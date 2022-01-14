@@ -1,0 +1,6 @@
+rootProject.name = 'trade-platform'
+include 'trade-welcome'
+include 'trade-commerce'
+include 'trade-chat'
+include 'trade-common'
+
