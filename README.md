@@ -49,5 +49,3 @@
 
 ## 성능 테스트
 * 기타 등등..
-
-Then `cd` into the directory.
