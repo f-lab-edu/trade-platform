@@ -2,6 +2,14 @@ plugins {
     id 'java'
 }
 
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
 version 'unspecified'
 
 repositories {
@@ -9,6 +17,7 @@ repositories {
 }
 
 dependencies {
+
 }
 
 test {
