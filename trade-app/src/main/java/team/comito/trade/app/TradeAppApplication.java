@@ -1,11 +1,11 @@
-package team.comito.trade.server;
+package team.comito.trade.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TradeServerApplication {
+public class TradeAppApplication {
     public static void main(String[] args) {
-        SpringApplication.run(TradeServerApplication.class,args);
+        SpringApplication.run(TradeAppApplication.class,args);
     }
 }

@@ -3,5 +3,5 @@ include 'trade-user'
 include 'trade-commerce'
 include 'trade-chat'
 include 'trade-common'
-include 'trade-server'
+include 'trade-app'
 
