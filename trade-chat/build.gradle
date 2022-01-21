@@ -4,7 +4,7 @@ plugins {
 }
 
 bootJar {
-    mainClassName = 'team.comito.trade.server.TradeServerApplication'
+    mainClassName = 'team.comito.trade.app.TradeAppApplication'
 }
 
 jar {
@@ -20,7 +20,6 @@ repositories {
 
 dependencies {
     compileOnly project(":trade-common")
-
 }
 
 test {

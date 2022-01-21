@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
     compileOnly project(":trade-common")
+    implementation project(':trade-chat')       //testing
 }
 
 test {
