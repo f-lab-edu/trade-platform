@@ -1,17 +1,15 @@
-package team.comito.trade.chat.controller;
+package team.happy.trade.app;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
-public class ChatControllerTest {
+public class ControllerTest {
 
-    @RequestMapping(path = "/chat/test")
-    public ResponseEntity<?> controllerTest() {
+    @RequestMapping(path = "/main/test")
+    public ResponseEntity<?> test() {
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
 }

@@ -13,7 +13,7 @@ buildscript {
 }
 
 allprojects {
-    group 'team.comito'
+    group 'team.happy'
     version '1.0.0'
 }
 

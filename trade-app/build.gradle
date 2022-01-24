@@ -10,7 +10,7 @@ jar {
     enabled = true
 }
 
-group 'team.comito'
+group 'team.happy'
 version '1.0.0'
 
 repositories {

@@ -10,7 +10,8 @@ jar {
     enabled = true
 }
 
-version 'unspecified'
+group 'team.happy'
+version '1.0.0'
 
 repositories {
     mavenCentral()
