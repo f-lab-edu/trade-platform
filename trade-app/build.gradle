@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = true
+}
+
+group 'team.happy'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':trade-chat')
+    implementation project(":trade-common")
+    implementation project(':trade-commerce')
+    implementation project(':trade-user')
+}
+
+test {
+    useJUnitPlatform()
+}

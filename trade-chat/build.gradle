@@ -2,7 +2,15 @@ plugins {
     id 'java'
 }
 
-group 'team.comito'
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+group 'team.happy'
 version '1.0.0'
 
 repositories {
@@ -10,6 +18,7 @@ repositories {
 }
 
 dependencies {
+    compileOnly project(":trade-common")
 }
 
 test {

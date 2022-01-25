@@ -1,6 +1,5 @@
 
 buildscript {
-
     ext {
         springBootVersion = '2.6.2'
     }
@@ -14,7 +13,7 @@ buildscript {
 }
 
 allprojects {
-    group 'team.comito'
+    group 'team.happy'
     version '1.0.0'
 }
 
@@ -32,9 +31,10 @@ subprojects {
         mavenCentral()
     }
 
-    // 하위 모듈에서 공통으로 사용하는 세팅 추가
     dependencies {
         compileOnly 'org.projectlombok:lombok'
+
+        implementation 'org.springframework.boot:spring-boot-starter-web'
 
         annotationProcessor 'org.projectlombok:lombok'
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
@@ -47,41 +47,4 @@ subprojects {
         useJUnitPlatform()
     }
 }
-
-
-project(':trade-common') {
-    bootJar.enabled = false
-    jar.enabled = true
-
-    dependencies {
-    }
-}
-
-project(':trade-chat') {
-    bootJar.enabled = false
-    jar.enabled = true
-
-    dependencies {
-        compileOnly project(":trade-common")
-        implementation 'org.springframework.boot:spring-boot-starter-web'
-    }
-}
-
-project(':trade-commerce') {
-    bootJar.enabled = false
-    jar.enabled = true
-
-    dependencies {
-        compileOnly project(":trade-common")
-        implementation 'org.springframework.boot:spring-boot-starter-web'
-    }
-}
-
-project(':trade-welcome') {
-    dependencies {
-        compileOnly project(":trade-common")
-        implementation 'org.springframework.boot:spring-boot-starter-web'
-    }
-}
-
 
