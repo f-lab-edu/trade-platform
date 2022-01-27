@@ -22,6 +22,7 @@ subprojects {
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'checkstyle'
 
     sourceCompatibility = '11'
     targetCompatibility = '11'
@@ -38,13 +39,26 @@ subprojects {
 
         annotationProcessor 'org.projectlombok:lombok'
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     }
 
     test {
         useJUnitPlatform()
+    }
+
+    checkstyle {
+        toolVersion = '9.0'
+    }
+
+    task checkstyle(type: Checkstyle) {
+        configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+        source 'src/main/java/'
+        include '**/*.java'
+        showViolations true
+        classpath = files()
+        ignoreFailures = false
+        maxWarnings = 0
     }
 }
 
