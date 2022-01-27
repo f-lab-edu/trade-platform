@@ -41,7 +41,7 @@
 * merge 전략
   * PR을 통해 다른 사용자에게 반드시 리뷰를 받은 후 main 브랜치에 merge 진행.
 
-### 코드 스타일
+## 코드 스타일
 [Checkstyle 9.0](https://github.com/checkstyle/checkstyle/releases/) 버전 적용
 
 * google_checks.xml 사용
