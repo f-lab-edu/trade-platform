@@ -7,7 +7,7 @@
 * 중고거래 플랫폼을 이용하는 사용자는 관심있는 중고상품을 올린 사용자에게 직접 DM 메세지를 이용해 채팅 가능
 * 대용량의 사용자 동시 접속 및 플랫폼 이용 가능
 
-## 프로젝트 중정상황
+## 프로젝트 중점상황
 * 로그인 서비스
 * Redis를 활용한 로그인 서비스
 * 중고거래 상품의 등록 및 조회 구현 (인메모리 방식)
@@ -40,7 +40,14 @@
   * 브랜치의 이름을 의도가 드러나게 명확히 작성 필요.
 * merge 전략
   * PR을 통해 다른 사용자에게 반드시 리뷰를 받은 후 main 브랜치에 merge 진행.
-  
+
+### 코드 스타일
+[Checkstyle 9.0](https://github.com/checkstyle/checkstyle/releases/) 버전 적용
+
+* google_checks.xml 사용
+* Lint 적용을 통해 커밋 전 자동 코드 스타일 검사
+* Lint 적용을 위해 아래 명령어 입력 (레포지토리 클론 후)
+  * git config core.hooksPath .githooks (git version 2.9 이상)
 
 
 ## 테스트
