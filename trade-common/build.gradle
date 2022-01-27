@@ -2,13 +2,23 @@ plugins {
     id 'java'
 }
 
-version 'unspecified'
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+group 'team.happy'
+version '1.0.0'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+
 }
 
 test {
