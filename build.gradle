@@ -23,6 +23,7 @@ subprojects {
     apply plugin: 'idea'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'checkstyle'
 
     sourceCompatibility = '11'
     targetCompatibility = '11'
@@ -45,6 +46,20 @@ subprojects {
 
     test {
         useJUnitPlatform()
+    }
+
+    checkstyle {
+        toolVersion = '9.0'
+    }
+
+    task checkstyle(type: Checkstyle) {
+        configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+        source 'src/main/java/'
+        include '**/*.java'
+        showViolations true
+        classpath = files()
+        ignoreFailures = false
+        maxWarnings = 0
     }
 }
 
@@ -83,5 +98,3 @@ project(':trade-welcome') {
         implementation 'org.springframework.boot:spring-boot-starter-web'
     }
 }
-
-
