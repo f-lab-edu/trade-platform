@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ControllerTest {
-
     @RequestMapping(path = "/main/test")
     public ResponseEntity<?> test() {
         return ResponseEntity.ok(HttpStatus.OK);
