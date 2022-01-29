@@ -6,7 +6,7 @@ noColor='\033[0m'
 
 # for each module
 projectDir=$(git rev-parse --show-toplevel)
-lintProjects=("trade-app" "trade-chat" "trade-commerce" "trade-common" "trade-user")
+lintProjects=(trade-app trade-chat trade-commerce trade-common trade-user)
 
 for project in ${lintProjects[@]}
 do
