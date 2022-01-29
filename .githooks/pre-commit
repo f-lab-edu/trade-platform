@@ -8,7 +8,7 @@ noColor='\033[0m'
 projectDir=$(git rev-parse --show-toplevel)
 lintProjects=(trade-app trade-chat trade-commerce trade-common trade-user)
 
-for project in ${lintProjects[@]}
+for project in $lintProjects
 do
     # Checkstyle
     echo "-----------------Starting run java checkstyle for ${project}-----------------"
