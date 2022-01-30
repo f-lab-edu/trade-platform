@@ -24,6 +24,9 @@
 
 추후 업데이트
 
+## 프로젝트 진행단계
+- [세션을 활용한 로그인 및 회원가입 기능 구현](https://github.com/f-lab-edu/trade-platform/wiki/Project-features)
+
 ## 기술 스택
 
 - Spring boot 2.6.2
