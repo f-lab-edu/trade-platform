@@ -5,6 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-<h2>회원가입 화면</h2>
+<div id="container">
+    <form action="/user/register" method="post">
+        <fieldset>
+            <input type="text" name="username" placeholder="username" required autofocus>
+            <br/> <br/>
+            <input type="password" name="password" placeholder="Password" required>
+            <br/> <br/>
+            <input type="password" name="confirmedPassword" placeholder="Confirm Password" required>
+            <br/> <br/>
+            <input type="submit" name="submit" value="REGISTER">
+        </fieldset>
+    </form>
+</div>
 </body>
 </html>
