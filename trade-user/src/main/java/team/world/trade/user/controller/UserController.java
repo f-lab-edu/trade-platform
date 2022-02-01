@@ -1,7 +1,9 @@
 package team.world.trade.user.controller;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +31,7 @@ public class UserController {
         return "user/login_fail";
     }
 
-    
+
     @PostMapping(value = "/register")
     public String register(@RequestParam String username, @RequestParam String password,
                            @RequestParam String confirmedPassword) {
@@ -40,7 +42,7 @@ public class UserController {
             if (succeedRegister.isPresent()) {
                 return "redirect:/";
             } else {
-                return "register_fail";
+                return "user/register_fail";
             }
         }
         return "user/register_fail";
@@ -49,5 +51,12 @@ public class UserController {
     @RequestMapping(value = "/register")
     public String registerPage() {
         return "user/register";
+    }
+
+    @RequestMapping(value = "/findAll")
+    public String findAllPage(Model model) {
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        return "user/findAll";
     }
 }

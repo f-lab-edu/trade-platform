@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>아이디</th>
+            <th>패스워드</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getName()}">유저 아이디</td>
+            <td th:text="${user.getPassword()}">유저 패스워드</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

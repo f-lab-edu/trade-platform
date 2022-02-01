@@ -52,19 +52,4 @@ public class UserServiceImpl implements UserService {
         userRepository.clear();
     }
 
-    private boolean checkPassword(User user) {
-        User findUser = findUser(user);
-        String findUserPassword = findUser.getPassword();
-        String password = user.getPassword();
-        return UserUtils.isSameString(password, findUserPassword);
-    }
-
-    private User findUser(User user) {
-        List<User> users = userRepository.findAll();
-        int target = users.indexOf(user);
-        User findUser = users.get(target);
-        return findUser;
-    }
-
-
 }
