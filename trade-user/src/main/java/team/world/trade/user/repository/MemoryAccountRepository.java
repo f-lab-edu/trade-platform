@@ -27,7 +27,7 @@ public class MemoryAccountRepository implements AccountRepository {
     @Override
     public Optional<Account> findByUsername(String username) {
         return store.values().stream()
-                .filter(account -> username.equals(username))
+                .filter(account -> account.getUsername().equals(username))
                 .findAny();
     }
 
