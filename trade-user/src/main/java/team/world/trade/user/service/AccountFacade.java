@@ -30,7 +30,6 @@ public class AccountFacade {
 
     public AccountResponse register(RegisterAccountDto registerAccountDto) {
         return registerAccountService.register(registerAccountDto.getUsername(),
-                registerAccountDto.getEmail(), registerAccountDto.getPassword(),
-                registerAccountDto.getConfirmedPassword());
+                registerAccountDto.getEmail(), registerAccountDto.getPassword());
     }
 }

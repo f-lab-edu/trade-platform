@@ -17,10 +17,7 @@ public final class LoginAccountService {
 
     public AccountResponse login(String username, String password) {
         Account account = accountRepository.findByUsername(username).orElseThrow();
-
-        if (!account.validatePassword(password)) {
-            throw new AccountNotFoundException();
-        }
+        
         return new AccountResponse(account.getUsername(), account.getEmail());
     }
 

@@ -1,5 +1,6 @@
 package team.world.trade.user.model.dtos;
 
+
 public class RegisterAccountDto {
 
     private String username;
@@ -7,8 +8,6 @@ public class RegisterAccountDto {
     private String email;
 
     private String password;
-
-    private String confirmedPassword;
 
     public RegisterAccountDto() {
     }
@@ -18,7 +17,6 @@ public class RegisterAccountDto {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.confirmedPassword = confirmedPassword;
     }
 
     public String getUsername() {
@@ -45,11 +43,4 @@ public class RegisterAccountDto {
         this.password = password;
     }
 
-    public String getConfirmedPassword() {
-        return confirmedPassword;
-    }
-
-    public void setConfirmedPassword(String confirmedPassword) {
-        this.confirmedPassword = confirmedPassword;
-    }
 }

@@ -21,7 +21,4 @@ public class Account {
         this.password = password;
     }
 
-    public boolean validatePassword(String password) {
-        return this.password.equals(password) ? true : false;
-    }
 }

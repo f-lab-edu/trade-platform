@@ -15,12 +15,7 @@ public final class RegisterAccountService {
         this.accountRepository = accountRepository;
     }
 
-    public AccountResponse register(String username, String email, String password,
-                                    String confirmedPassword) {
-        if (!validate(password, confirmedPassword)) {
-            throw new AccountNotCreateException();
-        }
-
+    public AccountResponse register(String username, String email, String password) {
         if (accountRepository.existByEmail(email)) {
             throw new AccountNotCreateException();
         }
@@ -34,9 +29,4 @@ public final class RegisterAccountService {
 
         return new AccountResponse(savedAccount.getUsername(), savedAccount.getEmail());
     }
-
-    public boolean validate(String password, String confirmedPassword) {
-        return password.equals(confirmedPassword) ? true : false;
-    }
-
 }
