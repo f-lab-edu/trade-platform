@@ -3,13 +3,14 @@ package team.world.trade.user.repository;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Repository;
 import team.world.trade.user.model.Account;
 
 @Repository
 public class MemoryAccountRepository implements AccountRepository {
 
-    private static Map<Long, Account> store = new HashMap<>();
+    private static Map<Long, Account> store = new ConcurrentHashMap<>();
     private static Long sequence = 0L;
 
     @Override
