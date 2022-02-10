@@ -1,23 +1,23 @@
 package team.world.trade.user.service.account;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import team.world.trade.user.exception.AccountNotCreateException;
 import team.world.trade.user.model.Account;
 import team.world.trade.user.model.dtos.RegisterAccountDto;
 import team.world.trade.user.repository.AccountRepository;
 import team.world.trade.user.response.payload.AccountResponse;
-import team.world.trade.user.service.encrypt.PasswordEncrypter;
 
 @Service
 public final class RegisterAccountService {
 
     private final AccountRepository accountRepository;
-    private final PasswordEncrypter passwordEncrypter;
+    private final PasswordEncoder passwordEncoder;
 
     public RegisterAccountService(AccountRepository accountRepository,
-                                  PasswordEncrypter passwordEncrypter) {
+                                  PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
-        this.passwordEncrypter = passwordEncrypter;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public AccountResponse register(RegisterAccountDto registerAccountDto) {
@@ -33,9 +33,8 @@ public final class RegisterAccountService {
             throw new AccountNotCreateException();
         }
 
-        String encrypted = passwordEncrypter.encrypt(username, password);
-
-        Account account = new Account(username, email, encrypted);
+        String encoded = passwordEncoder.encode(password);
+        Account account = new Account(username, email, encoded);
         Account savedAccount = accountRepository.save(account);
 
         return new AccountResponse(savedAccount.getUsername(), savedAccount.getEmail());

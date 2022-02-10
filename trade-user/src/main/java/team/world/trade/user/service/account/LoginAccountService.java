@@ -1,36 +1,41 @@
 package team.world.trade.user.service.account;
 
+import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import team.world.trade.user.exception.PasswordMismatchException;
 import team.world.trade.user.model.Account;
 import team.world.trade.user.model.dtos.LoginAccountDto;
 import team.world.trade.user.repository.AccountRepository;
 import team.world.trade.user.response.payload.AccountResponse;
-import team.world.trade.user.service.encrypt.PasswordEncrypter;
 
 
 @Service
 public final class LoginAccountService {
 
     private final AccountRepository accountRepository;
-    private final PasswordEncrypter passwordEncrypter;
+    private final PasswordEncoder passwordEncoder;
 
     public LoginAccountService(AccountRepository accountRepository,
-                               PasswordEncrypter passwordEncrypter) {
+                               PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
-        this.passwordEncrypter = passwordEncrypter;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public AccountResponse login(LoginAccountDto loginAccountDto) {
         String username = loginAccountDto.getUsername();
         String password = loginAccountDto.getPassword();
 
-        Account account = accountRepository.findByUsername(username).orElseThrow();
-
-        if (!passwordEncrypter.findEncrypted(username, password).equals(account.getPassword())) {
+        if (!success(username, password)) {
             throw new PasswordMismatchException();
         }
 
+        Account account = accountRepository.findByUsername(username).orElseThrow();
         return new AccountResponse(account.getUsername(), account.getEmail());
+    }
+
+    public boolean success(String username, String password) {
+        Optional<Account> foundAccount = accountRepository.findByUsername(username);
+        return passwordEncoder.matches(password, foundAccount.get().getPassword());
     }
 }
