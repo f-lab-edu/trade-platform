@@ -10,7 +10,7 @@ jar {
     enabled = true
 }
 
-group 'team.happy'
+group 'team.world'
 version '1.0.0'
 
 repositories {

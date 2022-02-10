@@ -1,9 +1,9 @@
-package team.happy.trade.app;
+package team.world.trade.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "team.happy")
+@SpringBootApplication(scanBasePackages = "team.world")
 public class TradeAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(TradeAppApplication.class, args);
