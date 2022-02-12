@@ -1,11 +1,11 @@
 package team.world.trade.user.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 import team.world.trade.user.model.dtos.LoginAccountDto;
 import team.world.trade.user.model.dtos.RegisterAccountDto;
 import team.world.trade.user.response.ResponseApi;
@@ -22,8 +22,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseApi<?> login(@RequestBody LoginAccountDto request) {
-        return ResponseApi.success(accountFacade.login(request));
+    public ResponseApi<?> login(@RequestBody LoginAccountDto request,
+                                HttpServletResponse response) {
+        return ResponseApi.success(accountFacade.login(request, response));
     }
 
     @PostMapping("/signup")
@@ -31,10 +32,13 @@ public class AuthController {
         return ResponseApi.success(accountFacade.register(registerAccountDto));
     }
 
-    @GetMapping(value = "/signup")
-    public ModelAndView getRegisterPage() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("/user/register");
-        return mv;
+    @PostMapping("/logout")
+    public ResponseApi<?> logout(HttpServletRequest request) {
+        return ResponseApi.success(accountFacade.logout(request));
+    }
+
+    @PostMapping("/home")
+    public ResponseApi<?> home(HttpServletRequest request) {
+        return ResponseApi.success(accountFacade.home(request));
     }
 }
