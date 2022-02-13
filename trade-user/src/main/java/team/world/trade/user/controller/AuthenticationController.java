@@ -9,36 +9,33 @@ import org.springframework.web.bind.annotation.RestController;
 import team.world.trade.user.model.dtos.LoginAccountDto;
 import team.world.trade.user.model.dtos.RegisterAccountDto;
 import team.world.trade.user.response.ResponseApi;
-import team.world.trade.user.service.AccountFacade;
+import team.world.trade.user.service.AuthenticationFacade;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class AuthenticationController {
 
-    private final AccountFacade accountFacade;
+    private final AuthenticationFacade authenticationFacade;
 
-    public AuthController(AccountFacade accountFacade) {
-        this.accountFacade = accountFacade;
+    public AuthenticationController(AuthenticationFacade authenticationFacade) {
+        this.authenticationFacade = authenticationFacade;
     }
 
     @PostMapping("/login")
-    public ResponseApi<?> login(@RequestBody LoginAccountDto request,
+    public ResponseApi<?> login(@RequestBody LoginAccountDto loginAccountDto,
+                                HttpServletRequest request,
                                 HttpServletResponse response) {
-        return ResponseApi.success(accountFacade.login(request, response));
+        return ResponseApi.success(authenticationFacade.login(loginAccountDto, request, response));
     }
 
     @PostMapping("/signup")
     public ResponseApi<?> register(@RequestBody RegisterAccountDto registerAccountDto) {
-        return ResponseApi.success(accountFacade.register(registerAccountDto));
+        return ResponseApi.success(authenticationFacade.register(registerAccountDto));
     }
 
     @PostMapping("/logout")
     public ResponseApi<?> logout(HttpServletRequest request) {
-        return ResponseApi.success(accountFacade.logout(request));
+        return ResponseApi.success(authenticationFacade.logout(request));
     }
 
-    @PostMapping("/home")
-    public ResponseApi<?> home(HttpServletRequest request) {
-        return ResponseApi.success(accountFacade.home(request));
-    }
 }

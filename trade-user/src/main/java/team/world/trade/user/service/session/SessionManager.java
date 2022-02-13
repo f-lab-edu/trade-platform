@@ -8,8 +8,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
-import team.world.trade.user.model.Account;
-import team.world.trade.user.response.payload.AccountResponse;
 
 @Component
 public class SessionManager {
@@ -24,21 +22,19 @@ public class SessionManager {
         response.addCookie(cookie);
     }
 
-    public AccountResponse getSession(HttpServletRequest request) {
+    public Object getSession(HttpServletRequest request) {
         Cookie sessionCookie = findCookie(request);
         if (sessionCookie == null) {
             return null;
         }
-        Account account = (Account) sessionStore.get(sessionCookie.getValue());
-        return new AccountResponse(account.getUsername(), account.getEmail());
+        return sessionStore.get(sessionCookie.getValue());
     }
 
-    public AccountResponse expire(HttpServletRequest request) {
+    public String expire(HttpServletRequest request) {
         Cookie sessionCookie = findCookie(request);
         if (sessionCookie != null) {
-            Account account = (Account) sessionStore.get(sessionCookie.getValue());
             sessionStore.remove(sessionCookie.getValue());
-            return new AccountResponse(account.getUsername(), account.getEmail());
+            return sessionCookie.getValue();
         }
         return null;
     }
@@ -48,7 +44,6 @@ public class SessionManager {
         if (cookies == null) {
             return null;
         }
-
         return Arrays.stream(cookies)
                 .filter(c -> c.getName().equals(SESSION_COOKIE_NAME))
                 .findAny()
