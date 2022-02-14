@@ -20,11 +20,7 @@ public final class RegisterAccountService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public AccountResponse register(RegisterAccountDto registerAccountDto) {
-        String username = registerAccountDto.getUsername();
-        String email = registerAccountDto.getEmail();
-        String password = registerAccountDto.getPassword();
-
+    public AccountResponse register(String username, String email, String password) {
         if (accountRepository.existByEmail(email)) {
             throw new AccountNotCreateException();
         }

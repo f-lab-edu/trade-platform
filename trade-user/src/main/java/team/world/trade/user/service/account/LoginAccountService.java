@@ -22,10 +22,7 @@ public final class LoginAccountService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public AccountResponse login(LoginAccountDto loginAccountDto) {
-        String username = loginAccountDto.getUsername();
-        String password = loginAccountDto.getPassword();
-
+    public AccountResponse login(String username, String password) {
         if (!success(username, password)) {
             throw new PasswordMismatchException();
         }
