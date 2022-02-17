@@ -1,0 +1,7 @@
+#flyway
+spring.flyway.url=jdbc:mysql://localhost/commerce?characterEncoding=utf8
+spring.flyway.user=sclee
+spring.flyway.password=password!
+spring.flyway.baseline-on-migrate=true
+spring.flyway.baseline-version=0
+spring.flyway.enabled=true

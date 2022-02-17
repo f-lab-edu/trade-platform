@@ -40,7 +40,12 @@ subprojects {
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
         implementation 'org.springframework.security:spring-security-crypto:5.5.0'
+        implementation 'mysql:mysql-connector-java:8.0.17'
+        implementation 'org.springframework:spring-jdbc:5.3.14'
+        implementation 'org.apache.commons:commons-dbcp2:2.8.0'
 
+        implementation 'org.flywaydb:flyway-core:8.4.0'
+        implementation 'org.flywaydb:flyway-mysql:8.4.0'
 
         annotationProcessor 'org.projectlombok:lombok'
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
