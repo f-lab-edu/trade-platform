@@ -1,4 +1,4 @@
-package team.world.trade.app.config;
+package team.world.trade.common.config;
 
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;

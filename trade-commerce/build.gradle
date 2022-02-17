@@ -18,8 +18,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly project(":trade-common")
-    testImplementation((project(":trade-app")))
+    implementation project(":trade-common")
 }
 
 test {

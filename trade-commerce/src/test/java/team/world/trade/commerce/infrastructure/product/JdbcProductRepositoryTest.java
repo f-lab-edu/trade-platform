@@ -8,35 +8,33 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import team.world.trade.app.TradeAppApplication;
-import team.world.trade.commerce.application.ProductService;
 import team.world.trade.commerce.domain.Product;
-import team.world.trade.commerce.domain.dtos.ProductDto;
+import team.world.trade.common.config.DataSourceConfig;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = TradeAppApplication.class)
+@SpringBootTest(classes = {DataSourceConfig.class, JdbcProductRepository.class})
 class JdbcProductRepositoryTest {
 
-    private final ProductService productService;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public JdbcProductRepositoryTest(ProductService productService) {
-        this.productService = productService;
+    public JdbcProductRepositoryTest(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     @Test
     void findById() {
-        Optional<Product> found = productService.getProduct(1L);
+        Optional<Product> found = productRepository.findById(1L);
         Product product = found.get();
         assertThat(product.getName()).isEqualTo("라즈베리파이3 모델B");
     }
 
     @Test
     void save() {
-        ProductDto dto = new ProductDto("테스트물건",100,"테스트 물건에 대한 설명");
-        Product save = productService.store(dto);
-        Optional<Product> found = productService.getProduct(save.getId());
+        Product product = new Product("테스트물건", 100, "테스트 물건에 대한 설명");
+        Product save = productRepository.save(product);
+        Optional<Product> found = productRepository.findById(save.getId());
         Product foundProduct = found.get();
-        assertThat(foundProduct.getName()).isEqualTo(dto.getName());
+        assertThat(foundProduct.getName()).isEqualTo(product.getName());
     }
 }
