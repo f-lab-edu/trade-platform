@@ -8,14 +8,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import team.world.trade.app.TradeAppApplication;
 import team.world.trade.commerce.domain.Product;
-import team.world.trade.common.config.DataSourceConfig;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {DataSourceConfig.class, JdbcProductRepository.class})
+@SpringBootTest(classes = TradeAppApplication.class)
 class JdbcProductRepositoryTest {
 
     private final ProductRepository productRepository;
+
 
     @Autowired
     public JdbcProductRepositoryTest(ProductRepository productRepository) {

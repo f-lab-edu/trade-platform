@@ -25,8 +25,6 @@ public class ProductService {
     }
 
     public Optional<Product> getProduct(Long id) {
-        Optional<Product> found = productRepository.findById(id);
-        Product product = found.get();
-        return Optional.ofNullable(product);
+        return productRepository.findById(id);
     }
 }
