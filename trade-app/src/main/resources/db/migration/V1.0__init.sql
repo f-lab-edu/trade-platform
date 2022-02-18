@@ -1,11 +1,9 @@
-use commerce;
-
-create table commerce.category (
+create table category (
     id bigint not null primary key AUTO_INCREMENT,
     name varchar(100)
 ) character set utf8;
 
-create table commerce.product (
+create table product (
     id bigint not null primary key AUTO_INCREMENT,
     name varchar(100),
     price int,

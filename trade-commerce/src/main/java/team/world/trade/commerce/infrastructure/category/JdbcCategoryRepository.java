@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -15,8 +16,8 @@ public class JdbcCategoryRepository implements CategoryRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcCategoryRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public JdbcCategoryRepository(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
