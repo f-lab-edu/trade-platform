@@ -23,12 +23,6 @@ class JdbcProductRepositoryTest {
         this.productRepository = productRepository;
     }
 
-    @Test
-    void findById() {
-        Optional<Product> found = productRepository.findById(1L);
-        Product product = found.get();
-        assertThat(product.getName()).isEqualTo("라즈베리파이3 모델B");
-    }
 
     @Test
     void save() {
