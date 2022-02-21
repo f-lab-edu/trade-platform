@@ -1,4 +1,4 @@
-package team.world.trade.user.response;
+package team.world.trade.common.response;
 
 import lombok.Getter;
 
