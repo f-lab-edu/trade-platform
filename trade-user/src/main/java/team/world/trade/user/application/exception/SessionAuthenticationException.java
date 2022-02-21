@@ -1,4 +1,4 @@
-package team.world.trade.user.exception;
+package team.world.trade.user.application.exception;
 
 public class SessionAuthenticationException extends RuntimeException {
 

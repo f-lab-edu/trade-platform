@@ -1,4 +1,4 @@
-package team.world.trade.user.model;
+package team.world.trade.user.domain;
 
 import lombok.Getter;
 import lombok.Setter;

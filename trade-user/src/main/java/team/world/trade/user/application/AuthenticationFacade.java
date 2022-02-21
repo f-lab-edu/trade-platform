@@ -1,14 +1,14 @@
-package team.world.trade.user.service;
+package team.world.trade.user.application;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
-import team.world.trade.user.model.dtos.LoginAccountDto;
-import team.world.trade.user.model.dtos.RegisterAccountDto;
-import team.world.trade.user.response.payload.AccountResponse;
-import team.world.trade.user.service.account.LoginAccountService;
-import team.world.trade.user.service.account.RegisterAccountService;
-import team.world.trade.user.service.session.SessionManagerService;
+import team.world.trade.user.application.account.LoginAccountService;
+import team.world.trade.user.application.account.RegisterAccountService;
+import team.world.trade.user.application.dtos.LoginAccountDto;
+import team.world.trade.user.application.dtos.RegisterAccountDto;
+import team.world.trade.user.application.payload.AccountResponse;
+import team.world.trade.user.application.session.SessionManagerService;
 
 @Service
 public class AuthenticationFacade {

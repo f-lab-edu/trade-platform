@@ -1,9 +1,9 @@
-package team.world.trade.user.service.session;
+package team.world.trade.user.application.session;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
-import team.world.trade.user.exception.SessionAuthenticationException;
+import team.world.trade.user.application.exception.SessionAuthenticationException;
 
 @Service
 public class SessionManagerService {
