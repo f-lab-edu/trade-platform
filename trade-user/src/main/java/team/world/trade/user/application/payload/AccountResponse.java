@@ -1,4 +1,4 @@
-package team.world.trade.user.response.payload;
+package team.world.trade.user.application.payload;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package team.world.trade.user.model.dtos;
+package team.world.trade.user.application.dtos;
 
 
 public class RegisterAccountDto {

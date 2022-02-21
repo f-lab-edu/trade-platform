@@ -1,12 +1,14 @@
-package team.world.trade.user.repository;
+package team.world.trade.user.infrastructure;
 
 
 import java.util.Optional;
-import team.world.trade.user.model.Account;
+import org.apache.ibatis.annotations.Mapper;
+import team.world.trade.user.domain.Account;
 
+@Mapper
 public interface AccountRepository {
 
-    Account save(Account account);
+    void save(Account account);
 
     Optional<Account> findById(Long accountId);
 

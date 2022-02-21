@@ -1,4 +1,4 @@
-package team.world.trade.user.service.session;
+package team.world.trade.user.application.session;
 
 import java.util.Arrays;
 import java.util.Map;

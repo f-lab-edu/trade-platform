@@ -1,12 +1,12 @@
-package team.world.trade.user.service.account;
+package team.world.trade.user.application.account;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import team.world.trade.user.exception.AccountNotCreateException;
-import team.world.trade.user.model.Account;
-import team.world.trade.user.model.dtos.RegisterAccountDto;
-import team.world.trade.user.repository.AccountRepository;
-import team.world.trade.user.response.payload.AccountResponse;
+import team.world.trade.user.application.exception.AccountNotCreateException;
+import team.world.trade.user.application.payload.AccountResponse;
+import team.world.trade.user.domain.Account;
+import team.world.trade.user.infrastructure.AccountRepository;
+
 
 @Service
 public final class RegisterAccountService {
@@ -22,17 +22,17 @@ public final class RegisterAccountService {
 
     public AccountResponse register(String username, String email, String password) {
         if (accountRepository.existByEmail(email)) {
-            throw new AccountNotCreateException();
+            throw new AccountNotCreateException("Email already exists.");
         }
 
         if (accountRepository.existByUsername(username)) {
-            throw new AccountNotCreateException();
+            throw new AccountNotCreateException("Username already exists.");
         }
 
         String encoded = passwordEncoder.encode(password);
         Account account = new Account(username, email, encoded);
-        Account savedAccount = accountRepository.save(account);
+        accountRepository.save(account);
 
-        return new AccountResponse(savedAccount.getUsername(), savedAccount.getEmail());
+        return new AccountResponse(account.getUsername(), account.getEmail());
     }
 }
