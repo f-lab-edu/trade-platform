@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@MapperScan(basePackages = "team.world")
+@MapperScan(basePackages = "team.world.trade.user")
 @SpringBootApplication(scanBasePackages = "team.world")
 public class TradeAppApplication {
     public static void main(String[] args) {

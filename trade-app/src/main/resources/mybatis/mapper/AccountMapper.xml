@@ -19,7 +19,7 @@
         SELECT ID,
                USERNAME,
                EMAIL,
-               PASSWORD,
+               PASSWORD
         FROM ACCOUNT
         WHERE ID = #{id}
     </select>
@@ -28,7 +28,7 @@
         SELECT ID,
                USERNAME,
                EMAIL,
-               PASSWORD,
+               PASSWORD
         FROM ACCOUNT
         WHERE USERNAME = #{username}
     </select>
