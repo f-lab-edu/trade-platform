@@ -11,4 +11,3 @@ services:
     volumes:
       - "./docker-compose-mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
       - "./sql/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql"
-#      - "/Users/sclee/sclee/datadrive/mysql:/var/lib/mysql"

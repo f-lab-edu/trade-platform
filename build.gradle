@@ -47,6 +47,8 @@ subprojects {
         implementation 'org.flywaydb:flyway-core:8.4.0'
         implementation 'org.flywaydb:flyway-mysql:8.4.0'
 
+        implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+
         annotationProcessor 'org.projectlombok:lombok'
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'

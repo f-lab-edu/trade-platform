@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="team.world.trade.user.infrastructure.AccountRepository">
+
+    <insert id="save" parameterType="team.world.trade.user.domain.Account"
+            keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO `ACCOUNT` (`ID`, `USERNAME`, `EMAIL`, `PASSWORD`)
+        VALUES (#{id},
+                #{username},
+                #{email},
+                #{password})
+    </insert>
+
+    <select id="findById" parameterType="Long" resultType="team.world.trade.user.domain.Account">
+        SELECT ID,
+               USERNAME,
+               EMAIL,
+               PASSWORD,
+        FROM ACCOUNT
+        WHERE ID = #{id}
+    </select>
+
+    <select id="findByUsername" parameterType="String" resultType="team.world.trade.user.domain.Account">
+        SELECT ID,
+               USERNAME,
+               EMAIL,
+               PASSWORD,
+        FROM ACCOUNT
+        WHERE USERNAME = #{username}
+    </select>
+
+
+    <select id="existByUsername" parameterType="String" resultType="boolean">
+        SELECT EXISTS
+                   (SELECT USERNAME
+                    FROM ACCOUNT
+                    WHERE USERNAME = #{username}
+                   )
+    </select>
+
+
+    <select id="existByEmail" parameterType="String" resultType="boolean">
+        SELECT EXISTS
+                   (SELECT EMAIL
+                    FROM ACCOUNT
+                    WHERE EMAIL = #{email}
+                   )
+    </select>
+
+</mapper>
