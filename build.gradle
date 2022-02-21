@@ -43,6 +43,8 @@ subprojects {
         implementation 'org.springframework:spring-jdbc:5.3.14'
         implementation 'org.apache.commons:commons-dbcp2:2.8.0'
 
+        implementation 'org.flywaydb:flyway-core:8.4.0'
+        implementation 'org.flywaydb:flyway-mysql:8.4.0'
 
         implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 
