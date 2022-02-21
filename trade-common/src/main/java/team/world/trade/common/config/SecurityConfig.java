@@ -1,4 +1,4 @@
-package team.world.trade.app.security;
+package team.world.trade.common.config;
 
 
 import org.springframework.context.annotation.Bean;
