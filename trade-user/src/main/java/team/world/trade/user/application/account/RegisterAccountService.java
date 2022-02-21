@@ -30,8 +30,8 @@ public final class RegisterAccountService {
 
         String encoded = passwordEncoder.encode(password);
         Account account = new Account(username, email, encoded);
-        Account savedAccount = accountRepository.save(account);
+        accountRepository.save(account);
 
-        return new AccountResponse(savedAccount.getUsername(), savedAccount.getEmail());
+        return new AccountResponse(account.getUsername(), account.getEmail());
     }
 }

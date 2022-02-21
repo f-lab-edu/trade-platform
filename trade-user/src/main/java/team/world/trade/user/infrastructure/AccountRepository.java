@@ -8,7 +8,7 @@ import team.world.trade.user.domain.Account;
 @Mapper
 public interface AccountRepository {
 
-    Account save(Account account);
+    void save(Account account);
 
     Optional<Account> findById(Long accountId);
 
