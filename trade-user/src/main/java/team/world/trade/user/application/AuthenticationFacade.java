@@ -2,15 +2,17 @@ package team.world.trade.user.application;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Service;
 import team.world.trade.user.application.account.LoginAccountService;
 import team.world.trade.user.application.account.RegisterAccountService;
-import team.world.trade.user.application.dtos.LoginAccountDto;
-import team.world.trade.user.application.dtos.RegisterAccountDto;
-import team.world.trade.user.application.payload.AccountResponse;
+import team.world.trade.user.application.request.LoginAccountDto;
+import team.world.trade.user.application.request.RegisterAccountDto;
+import team.world.trade.user.application.response.AccountResponse;
 import team.world.trade.user.application.session.SessionManagerService;
 
 @Service
+@MapperScan(basePackages = "team.world.trade.user")
 public class AuthenticationFacade {
 
     private final LoginAccountService loginAccountService;

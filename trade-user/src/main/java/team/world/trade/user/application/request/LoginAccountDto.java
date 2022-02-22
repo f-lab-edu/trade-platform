@@ -1,4 +1,4 @@
-package team.world.trade.user.application.dtos;
+package team.world.trade.user.application.request;
 
 public class LoginAccountDto {
 

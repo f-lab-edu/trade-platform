@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import team.world.trade.common.response.ResponseApi;
 import team.world.trade.user.application.AuthenticationFacade;
-import team.world.trade.user.application.dtos.LoginAccountDto;
-import team.world.trade.user.application.dtos.RegisterAccountDto;
+import team.world.trade.user.application.request.LoginAccountDto;
+import team.world.trade.user.application.request.RegisterAccountDto;
 
 @RestController
 @RequestMapping("/api/auth")

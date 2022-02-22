@@ -1,4 +1,4 @@
-package team.world.trade.user.application.dtos;
+package team.world.trade.user.application.request;
 
 
 public class RegisterAccountDto {
@@ -12,8 +12,7 @@ public class RegisterAccountDto {
     public RegisterAccountDto() {
     }
 
-    public RegisterAccountDto(String username, String email, String password,
-                              String confirmedPassword) {
+    public RegisterAccountDto(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;

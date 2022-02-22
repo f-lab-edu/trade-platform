@@ -1,11 +1,9 @@
-package team.world.trade.user.infrastructure;
+package team.world.trade.user.domain;
 
 
 import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
-import team.world.trade.user.domain.Account;
 
-@Mapper
 public interface AccountRepository {
 
     void save(Account account);

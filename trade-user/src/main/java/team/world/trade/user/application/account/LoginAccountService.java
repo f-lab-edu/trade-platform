@@ -4,9 +4,9 @@ import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import team.world.trade.user.application.exception.PasswordMismatchException;
-import team.world.trade.user.application.payload.AccountResponse;
+import team.world.trade.user.application.response.AccountResponse;
 import team.world.trade.user.domain.Account;
-import team.world.trade.user.infrastructure.AccountRepository;
+import team.world.trade.user.domain.AccountRepository;
 
 
 @Service
