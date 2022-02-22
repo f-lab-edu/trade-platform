@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="team.world.trade.user.infrastructure.AccountRepository">
+<mapper namespace="team.world.trade.user.domain.AccountRepository">
 
     <insert id="save" parameterType="team.world.trade.user.domain.Account"
             keyProperty="id" useGeneratedKeys="true">
