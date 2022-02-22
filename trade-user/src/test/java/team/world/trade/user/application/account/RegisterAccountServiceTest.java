@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import team.world.trade.user.application.response.AccountResponse;
-import team.world.trade.user.domain.AccountRepository;
+import team.world.trade.user.infrastructure.mybatis.AccountMapper;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = RegisterAccountService.class)
@@ -21,7 +21,7 @@ class RegisterAccountServiceTest {
     RegisterAccountService registerAccountService;
 
     @MockBean
-    AccountRepository accountRepository;
+    AccountMapper accountMapper;
 
     @MockBean
     PasswordEncoder passwordEncoder;
