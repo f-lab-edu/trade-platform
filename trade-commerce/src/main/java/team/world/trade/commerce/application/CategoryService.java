@@ -1,31 +1,28 @@
 package team.world.trade.commerce.application;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Service;
 import team.world.trade.commerce.application.request.CategoryDto;
 import team.world.trade.commerce.application.response.CategoryResponse;
 import team.world.trade.commerce.domain.Category;
-import team.world.trade.commerce.domain.CategoryRepository;
+import team.world.trade.commerce.infrastructure.mybatis.CategoryMapper;
 
 @Service
-@MapperScan(basePackages = "team.world.trade.commerce")
 public class CategoryService {
 
-    private final CategoryRepository categoryRepository;
+    private final CategoryMapper categoryMapper;
 
-    public CategoryService(
-            CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public CategoryService(CategoryMapper categoryMapper) {
+        this.categoryMapper = categoryMapper;
     }
 
     public CategoryResponse registerCategory(CategoryDto categoryDto) {
         Category category = new Category(categoryDto.getName());
-        categoryRepository.save(category);
+        categoryMapper.save(category);
         return new CategoryResponse(category.getName());
     }
 
     public CategoryResponse getCategory(Long id) {
-        Category category = categoryRepository.findById(id).orElseThrow();
+        Category category = categoryMapper.findById(id).orElseThrow();
         return new CategoryResponse(category.getName());
     }
 }

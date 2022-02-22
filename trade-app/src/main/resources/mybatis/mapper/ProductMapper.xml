@@ -6,7 +6,7 @@
 
 <mapper namespace="team.world.trade.commerce.domain.ProductRepository">
 
-    <insert id="save" parameterType="team.world.trade.commerce.domain.Product"
+    <insert id="save" parameterType="team.world.trade.commerce.infrastructure.mybatis.ProductMapper"
             keyProperty="id" useGeneratedKeys="true">
         INSERT INTO `PRODUCT` (`ID`, `NAME`, `PRICE`, `DETAIL`)
         VALUES (#{id},
