@@ -10,3 +10,4 @@ services:
       MYSQL_ROOT_PASSWORD: "password!"
     volumes:
       - "./docker-compose-mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+      - "./sql/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql"
