@@ -1,10 +1,13 @@
-package team.world.trade.commerce.domain.dtos;
+package team.world.trade.commerce.application.request;
 
 public class ProductDto {
 
     private String name;
     private Integer price;
     private String detail;
+    
+    public ProductDto() {
+    }
 
     public ProductDto(String name, Integer price, String detail) {
         this.name = name;

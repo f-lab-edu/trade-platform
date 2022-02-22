@@ -1,8 +1,10 @@
-package team.world.trade.commerce.domain.dtos;
+package team.world.trade.commerce.application.request;
 
-public class CatalogDto {
+public class CategoryDto {
 
     private String name;
+
+    public CategoryDto() {}
 
     public String getName() {
         return name;

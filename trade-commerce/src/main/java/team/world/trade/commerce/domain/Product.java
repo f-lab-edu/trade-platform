@@ -5,7 +5,7 @@ import java.util.Set;
 public class Product {
 
     private Long id;
-    private Set<Category> categories;
+    private Set<Long> categoryIds;
     private String name;
     private Integer price;
     private String detail;
@@ -27,12 +27,12 @@ public class Product {
         this.id = id;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
+    public Set<Long> getCategoryIds() {
+        return categoryIds;
     }
 
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
+    public void setCategoryIds(Set<Long> categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
     public String getName() {
