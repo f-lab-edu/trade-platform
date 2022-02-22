@@ -3,6 +3,7 @@ package team.world.trade.user.infrastructure;
 import java.util.Optional;
 import team.world.trade.user.domain.Account;
 import team.world.trade.user.domain.AccountRepository;
+import team.world.trade.user.infrastructure.mybatis.AccountMapper;
 
 public final class AccountRepositoryAdapter implements AccountRepository {
 

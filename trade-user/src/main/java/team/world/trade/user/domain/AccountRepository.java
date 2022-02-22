@@ -2,7 +2,6 @@ package team.world.trade.user.domain;
 
 
 import java.util.Optional;
-import org.apache.ibatis.annotations.Mapper;
 
 public interface AccountRepository {
 

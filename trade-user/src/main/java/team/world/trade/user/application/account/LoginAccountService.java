@@ -6,18 +6,18 @@ import org.springframework.stereotype.Service;
 import team.world.trade.user.application.exception.PasswordMismatchException;
 import team.world.trade.user.application.response.AccountResponse;
 import team.world.trade.user.domain.Account;
-import team.world.trade.user.domain.AccountRepository;
+import team.world.trade.user.infrastructure.mybatis.AccountMapper;
 
 
 @Service
 public final class LoginAccountService {
 
-    private final AccountRepository accountRepository;
+    private final AccountMapper accountMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public LoginAccountService(AccountRepository accountRepository,
+    public LoginAccountService(AccountMapper accountMapper,
                                PasswordEncoder passwordEncoder) {
-        this.accountRepository = accountRepository;
+        this.accountMapper = accountMapper;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -26,12 +26,12 @@ public final class LoginAccountService {
             throw new PasswordMismatchException();
         }
 
-        Account account = accountRepository.findByUsername(username).orElseThrow();
+        Account account = accountMapper.findByUsername(username).orElseThrow();
         return new AccountResponse(account.getUsername(), account.getEmail());
     }
 
     public boolean success(String username, String password) {
-        Optional<Account> foundAccount = accountRepository.findByUsername(username);
+        Optional<Account> foundAccount = accountMapper.findByUsername(username);
         return passwordEncoder.matches(password, foundAccount.get().getPassword());
     }
 }

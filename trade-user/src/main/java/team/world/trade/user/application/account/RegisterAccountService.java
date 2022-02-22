@@ -5,32 +5,32 @@ import org.springframework.stereotype.Service;
 import team.world.trade.user.application.exception.AccountNotCreateException;
 import team.world.trade.user.application.response.AccountResponse;
 import team.world.trade.user.domain.Account;
-import team.world.trade.user.domain.AccountRepository;
+import team.world.trade.user.infrastructure.mybatis.AccountMapper;
 
 @Service
 public final class RegisterAccountService {
 
-    private final AccountRepository accountRepository;
+    private final AccountMapper accountMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public RegisterAccountService(AccountRepository accountRepository,
+    public RegisterAccountService(AccountMapper accountMapper,
                                   PasswordEncoder passwordEncoder) {
-        this.accountRepository = accountRepository;
+        this.accountMapper = accountMapper;
         this.passwordEncoder = passwordEncoder;
     }
 
     public AccountResponse register(String username, String email, String password) {
-        if (accountRepository.existByEmail(email)) {
+        if (accountMapper.existByEmail(email)) {
             throw new AccountNotCreateException();
         }
 
-        if (accountRepository.existByUsername(username)) {
+        if (accountMapper.existByUsername(username)) {
             throw new AccountNotCreateException();
         }
 
         String encoded = passwordEncoder.encode(password);
         Account account = new Account(username, email, encoded);
-        accountRepository.save(account);
+        accountMapper.save(account);
 
         return new AccountResponse(account.getUsername(), account.getEmail());
     }
