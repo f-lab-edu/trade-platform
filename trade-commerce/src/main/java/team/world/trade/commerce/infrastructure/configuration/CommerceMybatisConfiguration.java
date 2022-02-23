@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@MapperScan(basePackages = "team.world.trade.commerce")
+@MapperScan(basePackages = "team.world.trade.commerce.infrastructure")
 public class CommerceMybatisConfiguration {
+
 }

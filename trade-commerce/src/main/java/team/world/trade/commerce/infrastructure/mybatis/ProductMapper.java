@@ -7,7 +7,8 @@ import team.world.trade.commerce.domain.Product;
 @Mapper
 public interface ProductMapper {
 
-    void save(Product product);
+    void insert(Product product);
 
     Optional<Product> findById(Long id);
+
 }

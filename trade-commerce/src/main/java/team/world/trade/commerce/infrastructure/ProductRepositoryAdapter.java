@@ -1,11 +1,13 @@
 package team.world.trade.commerce.infrastructure;
 
 import java.util.Optional;
+import org.springframework.stereotype.Component;
 import team.world.trade.commerce.domain.Product;
 import team.world.trade.commerce.domain.ProductRepository;
 import team.world.trade.commerce.infrastructure.mybatis.ProductMapper;
 
-public final class ProductRepositoryAdapter implements ProductRepository {
+@Component
+public class ProductRepositoryAdapter implements ProductRepository {
 
     private ProductMapper productMapper;
 
@@ -16,7 +18,7 @@ public final class ProductRepositoryAdapter implements ProductRepository {
 
     @Override
     public void save(Product product) {
-        productMapper.save(product);
+        productMapper.insert(product);
     }
 
     @Override

@@ -7,7 +7,8 @@ import team.world.trade.commerce.domain.Category;
 @Mapper
 public interface CategoryMapper {
 
-    void save(Category category);
+    void insert(Category category);
 
     Optional<Category> findById(Long id);
+
 }

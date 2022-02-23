@@ -4,25 +4,25 @@ import org.springframework.stereotype.Service;
 import team.world.trade.commerce.application.request.CategoryDto;
 import team.world.trade.commerce.application.response.CategoryResponse;
 import team.world.trade.commerce.domain.Category;
-import team.world.trade.commerce.infrastructure.mybatis.CategoryMapper;
+import team.world.trade.commerce.domain.CategoryRepository;
 
 @Service
 public class CategoryService {
 
-    private final CategoryMapper categoryMapper;
+    private final CategoryRepository categoryRepository;
 
-    public CategoryService(CategoryMapper categoryMapper) {
-        this.categoryMapper = categoryMapper;
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
     public CategoryResponse registerCategory(CategoryDto categoryDto) {
         Category category = new Category(categoryDto.getName());
-        categoryMapper.save(category);
+        categoryRepository.save(category);
         return new CategoryResponse(category.getName());
     }
 
     public CategoryResponse getCategory(Long id) {
-        Category category = categoryMapper.findById(id).orElseThrow();
+        Category category = categoryRepository.findById(id).orElseThrow();
         return new CategoryResponse(category.getName());
     }
 }
