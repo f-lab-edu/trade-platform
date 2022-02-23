@@ -15,7 +15,7 @@ public final class AccountRepositoryAdapter implements AccountRepository {
 
     @Override
     public void save(Account account) {
-        accountMapper.save(account);
+        accountMapper.insert(account);
     }
 
     @Override

@@ -3,12 +3,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="team.world.trade.commerce.infrastructure.mybatis.ProductMapper">
 
-<mapper namespace="team.world.trade.commerce.domain.ProductRepository">
-
-    <insert id="save" parameterType="team.world.trade.commerce.infrastructure.mybatis.ProductMapper"
+    <insert id="insert" parameterType="team.world.trade.commerce.infrastructure.mybatis.ProductMapper"
             keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO `PRODUCT` (`ID`, `NAME`, `PRICE`, `DETAIL`)
+        INSERT INTO `PRODUCT` (`PRODUCT_ID`, `NAME`, `PRICE`, `DETAIL`)
         VALUES (#{id},
                 #{name},
                 #{price},
@@ -17,7 +16,7 @@
 
     <select id="findById" parameterType="Long" resultType="team.world.trade.commerce.domain.Product">
         SELECT ID,
-               NAME ,
+               NAME,
                PRICE,
                DETAIL
         FROM PRODUCT

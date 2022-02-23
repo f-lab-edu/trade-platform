@@ -6,7 +6,7 @@
 
 <mapper namespace="team.world.trade.user.infrastructure.mybatis.AccountMapper">
 
-    <insert id="save" parameterType="team.world.trade.user.domain.Account"
+    <insert id="insert" parameterType="team.world.trade.user.infrastructure.mybatis.AccountMapper"
             keyProperty="id" useGeneratedKeys="true">
         INSERT INTO `ACCOUNT` (`ID`, `USERNAME`, `EMAIL`, `PASSWORD`)
         VALUES (#{id},

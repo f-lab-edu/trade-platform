@@ -6,9 +6,9 @@
 
 <mapper namespace="team.world.trade.commerce.infrastructure.mybatis.CategoryMapper">
 
-    <insert id="save" parameterType="team.world.trade.commerce.domain.Category"
+    <insert id="insert" parameterType="team.world.trade.commerce.domain.Category"
             keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO `CATEGORY` (`ID`, `NAME`)
+        INSERT INTO `CATEGORY` (`CATEGORY_ID`, `NAME`)
         VALUES (#{id},
                 #{name})
     </insert>
