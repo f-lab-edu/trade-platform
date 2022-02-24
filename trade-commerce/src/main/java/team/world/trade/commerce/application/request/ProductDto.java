@@ -1,38 +1,18 @@
-package team.world.trade.commerce.domain;
+package team.world.trade.commerce.application.request;
 
-import java.util.Set;
+public class ProductDto {
 
-public class Product {
-
-    private Long id;
-    private Set<Long> categoryIds;
     private String name;
     private Integer price;
     private String detail;
-
-    public Product() {
+    
+    public ProductDto() {
     }
 
-    public Product(String name, Integer price, String detail) {
+    public ProductDto(String name, Integer price, String detail) {
         this.name = name;
         this.price = price;
         this.detail = detail;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<Long> getCategoryIds() {
-        return categoryIds;
-    }
-
-    public void setCategoryIds(Set<Long> categoryIds) {
-        this.categoryIds = categoryIds;
     }
 
     public String getName() {
