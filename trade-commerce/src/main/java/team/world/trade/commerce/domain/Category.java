@@ -1,31 +1,19 @@
 package team.world.trade.commerce.domain;
 
+import lombok.Getter;
 
+@Getter
 public class Category {
 
     private Long id;
     private String name;
 
-    public Category() {
-    }
-
-    public Category(String name) {
+    private Category(String name) {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
+    public static Category of(String name) {
+        return new Category(name);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
