@@ -36,4 +36,9 @@ public class CommerceController {
     ResponseApi<?> addCategory(@RequestBody CategoryRequest categoryRequest) {
         return ResponseApi.success(commerceFacade.addCategory(categoryRequest));
     }
+
+    @GetMapping("/get/{categoryId}/category")
+    ResponseApi<?> getProductsInCategory(@PathVariable("categoryId") Long id) {
+        return ResponseApi.success(commerceFacade.getProductsInCategory(id));
+    }
 }
