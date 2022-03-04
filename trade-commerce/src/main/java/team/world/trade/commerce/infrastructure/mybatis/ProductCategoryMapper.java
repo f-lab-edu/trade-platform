@@ -7,7 +7,7 @@ import team.world.trade.commerce.domain.ProductCategory;
 @Mapper
 public interface ProductCategoryMapper {
 
-    void insert(ProductCategory productCategory);
+    void batchInsert(List<ProductCategory> productCategories);
 
     List<ProductCategory> findAll();
 }

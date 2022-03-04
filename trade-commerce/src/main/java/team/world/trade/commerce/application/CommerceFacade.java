@@ -34,7 +34,7 @@ public class CommerceFacade {
 
         CommerceRelation relation =
                 CommerceRelation.of(commerceIdResponse.getId(), commerceRequest.getCategoryIds());
-        commerceRelationService.process(relation);
+        commerceRelationService.insertProductByCategory(relation);
 
         return commerceIdResponse;
     }

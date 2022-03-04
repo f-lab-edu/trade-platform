@@ -7,18 +7,19 @@ import team.world.trade.commerce.domain.ProductCategoryRepository;
 import team.world.trade.commerce.infrastructure.mybatis.ProductCategoryMapper;
 
 @Component
-public class ProductCategoryAdapter implements ProductCategoryRepository {
+public class ProductCategoryRepositoryAdapter implements ProductCategoryRepository {
 
     private final ProductCategoryMapper productCategoryMapper;
 
-    public ProductCategoryAdapter(
+    public ProductCategoryRepositoryAdapter(
             ProductCategoryMapper productCategoryMapper) {
         this.productCategoryMapper = productCategoryMapper;
     }
 
+
     @Override
-    public void save(ProductCategory productCategory) {
-        productCategoryMapper.insert(productCategory);
+    public void batchInsert(List<ProductCategory> productCategories) {
+        productCategoryMapper.batchInsert(productCategories);
     }
 
     @Override

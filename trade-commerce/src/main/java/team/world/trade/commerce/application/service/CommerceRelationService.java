@@ -1,5 +1,8 @@
 package team.world.trade.commerce.application.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 import team.world.trade.commerce.application.exception.CategoryIdNotFoundException;
 import team.world.trade.commerce.application.payload.CommerceRelation;
@@ -16,13 +19,21 @@ public final class CommerceRelationService {
         this.productCategoryRepository = productCategoryRepository;
     }
 
-    public void process(CommerceRelation commerceRelation) {
+    public void insertProductByCategory(CommerceRelation commerceRelation) {
         if (commerceRelation.getCatalogIds() == null) {
             throw new CategoryIdNotFoundException("There are no category Ids for this product");
         }
+        
+        List<ProductCategory> productCategories = getProductCategoryList(commerceRelation);
+        productCategoryRepository.batchInsert(productCategories);
+    }
 
-        Long productId = commerceRelation.getProductId();
-        commerceRelation.getCatalogIds().stream()
-                .forEach(id -> productCategoryRepository.save(new ProductCategory(productId, id)));
+    private List<ProductCategory> getProductCategoryList(CommerceRelation commerceRelation) {
+        List<ProductCategory> productCategories = new ArrayList<>();
+        Set<Long> catalogIds = commerceRelation.getCatalogIds();
+
+        catalogIds.stream().forEach(id ->
+                productCategories.add(new ProductCategory(commerceRelation.getProductId(), id)));
+        return productCategories;
     }
 }

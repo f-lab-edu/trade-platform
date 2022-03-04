@@ -5,10 +5,12 @@
 
 <mapper namespace="team.world.trade.commerce.infrastructure.mybatis.ProductCategoryMapper">
 
-    <insert id="insert" parameterType="team.world.trade.commerce.infrastructure.mybatis.ProductCategoryMapper">
+    <insert id="batchInsert" parameterType="list">
         INSERT INTO `PRODUCT_CATEGORY` (`PRODUCT_ID`, `CATEGORY_ID`)
-        VALUES (#{productId},
-                #{categoryId})
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.productId}, #{ item.categoryId})
+        </foreach>
     </insert>
 
 </mapper>

@@ -22,7 +22,7 @@ public class CommerceController {
         this.commerceFacade = commerceFacade;
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     ResponseApi<?> get(@PathVariable("productId") Long id) {
         return ResponseApi.success(commerceFacade.get(id));
     }

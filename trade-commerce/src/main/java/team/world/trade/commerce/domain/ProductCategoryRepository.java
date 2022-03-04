@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ProductCategoryRepository {
 
-    void save(ProductCategory productCategory);
+    void batchInsert(List<ProductCategory> productCategories);
 
     List<ProductCategory> findAll();
 }
