@@ -1,5 +1,6 @@
 package team.world.trade.commerce.infrastructure;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 import team.world.trade.commerce.domain.Product;
@@ -24,5 +25,10 @@ public class ProductRepositoryAdapter implements ProductRepository {
     @Override
     public Optional<Product> findById(Long id) {
         return productMapper.findById(id);
+    }
+
+    @Override
+    public List<Product> findByCategoryId(Long id) {
+        return productMapper.findByCategoryId(id);
     }
 }

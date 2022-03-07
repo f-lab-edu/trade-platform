@@ -22,7 +22,7 @@ public class CommerceController {
         this.commerceFacade = commerceFacade;
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     ResponseApi<?> get(@PathVariable("productId") Long id) {
         return ResponseApi.success(commerceFacade.get(id));
     }
@@ -35,5 +35,10 @@ public class CommerceController {
     @PostMapping("/addCategory")
     ResponseApi<?> addCategory(@RequestBody CategoryRequest categoryRequest) {
         return ResponseApi.success(commerceFacade.addCategory(categoryRequest));
+    }
+
+    @GetMapping("/get/{categoryId}/category")
+    ResponseApi<?> getProductsInCategory(@PathVariable("categoryId") Long id) {
+        return ResponseApi.success(commerceFacade.getProductsInCategory(id));
     }
 }

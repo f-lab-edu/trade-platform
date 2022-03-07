@@ -1,5 +1,6 @@
 package team.world.trade.commerce.application.service;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 import team.world.trade.commerce.application.payload.CategoryRequest;
 import team.world.trade.commerce.application.payload.CommerceIdResponse;
@@ -27,8 +28,7 @@ public class CommerceService {
         return CommerceResponse.of(
                 product.getName(),
                 product.getPrice(),
-                product.getDetail(),
-                product.getCategoryIds());
+                product.getDetail());
     }
 
     public CommerceIdResponse create(CommerceRequest commerceRequest) {
@@ -47,5 +47,8 @@ public class CommerceService {
         return CommerceIdResponse.of(category.getId());
     }
 
+    public List<Product> findInCategoryId(Long id) {
+        return productRepository.findByCategoryId(id);
+    }
 
 }

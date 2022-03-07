@@ -1,4 +1,4 @@
-package team.world.trade.commerce.infrastructure.configuration;
+package team.world.trade.commerce.infrastructure.config;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;

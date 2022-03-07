@@ -5,7 +5,7 @@
 
 <mapper namespace="team.world.trade.commerce.infrastructure.mybatis.ProductMapper">
 
-    <insert id="insert" parameterType="team.world.trade.commerce.infrastructure.mybatis.ProductMapper"
+    <insert id="insert" parameterType="team.world.trade.commerce.domain.Product"
             keyProperty="id" useGeneratedKeys="true">
         INSERT INTO `PRODUCT` (`PRODUCT_ID`, `NAME`, `PRICE`, `DETAIL`)
         VALUES (#{id},
@@ -24,5 +24,24 @@
     </select>
 
 
+    <select id="findAll" resultType="list">
+        SELECT PRODUCT_ID,
+               NAME,
+               PRICE,
+               DETAIL
+        FROM PRODUCT
+    </select>
+
+    <select id="findByCategoryId" parameterType="Long" resultType="team.world.trade.commerce.domain.Product">
+        SELECT PRODUCT.NAME,
+               PRODUCT.PRICE,
+               PRODUCT.DETAIL
+        FROM PRODUCT
+                 JOIN PRODUCT_CATEGORY
+                      ON PRODUCT.PRODUCT_ID = PRODUCT_CATEGORY.PRODUCT_ID
+                 JOIN CATEGORY
+                      ON CATEGORY.CATEGORY_ID = PRODUCT_CATEGORY.CATEGORY_ID
+        WHERE CATEGORY.CATEGORY_ID = #{id}
+    </select>
 
 </mapper>
