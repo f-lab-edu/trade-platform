@@ -1,13 +1,17 @@
 package team.world.trade.commerce.presentation;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import team.world.trade.commerce.application.CommerceFacade;
 import team.world.trade.commerce.application.payload.CategoryRequest;
+import team.world.trade.commerce.application.payload.CommerceIdResponse;
 import team.world.trade.commerce.application.payload.CommerceRequest;
 import team.world.trade.common.response.ResponseApi;
 
@@ -27,9 +31,16 @@ public class CommerceController {
         return ResponseApi.success(commerceFacade.get(id));
     }
 
-    @PostMapping("/register")
-    ResponseApi<?> create(@RequestBody CommerceRequest commerceRequest) {
-        return ResponseApi.success(commerceFacade.create(commerceRequest));
+    @PostMapping(value = "/register", consumes = {MediaType.APPLICATION_JSON_VALUE,
+            MediaType.MULTIPART_FORM_DATA_VALUE})
+    ResponseApi<?> create(@RequestPart CommerceRequest commerceRequest,
+                          @RequestPart(required = false) MultipartFile multipartFile) {
+        CommerceIdResponse commerceIdResponse = commerceFacade.create(commerceRequest);
+        if (!multipartFile.isEmpty()) {
+            return ResponseApi.success(
+                    commerceFacade.storeImage(commerceIdResponse.getId(), multipartFile));
+        }
+        return ResponseApi.success(commerceIdResponse);
     }
 
     @PostMapping("/addCategory")
