@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team.world.trade.commerce.infrastructure.mybatis.ImageMapper">
+
+    <insert id="insert" parameterType="team.world.trade.commerce.infrastructure.mybatis.ImageMapper"
+            keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO `IMAGE` (`ID`, `IMAGE_PATH`, `UPLOAD_TIME`)
+        VALUES (#{id},
+                #{path},
+                #{uploadTime})
+    </insert>
+
+</mapper>
+
+

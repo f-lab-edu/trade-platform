@@ -7,11 +7,12 @@
 
     <insert id="insert" parameterType="team.world.trade.commerce.domain.Product"
             keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO `PRODUCT` (`PRODUCT_ID`, `NAME`, `PRICE`, `DETAIL`)
+        INSERT INTO `PRODUCT` (`PRODUCT_ID`, `NAME`, `PRICE`, `DETAIL`,`IMAGE_PATH`)
         VALUES (#{id},
                 #{name},
                 #{price},
-                #{detail})
+                #{detail},
+                #{imagePath})
     </insert>
 
     <select id="findById" parameterType="Long" resultType="team.world.trade.commerce.domain.Product">

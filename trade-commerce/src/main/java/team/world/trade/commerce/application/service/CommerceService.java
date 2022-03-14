@@ -37,6 +37,10 @@ public class CommerceService {
                 commerceRequest.getPrice(),
                 commerceRequest.getDetail());
 
+        if (commerceRequest.getImagePayload() != null) {
+            product.setImagePath(commerceRequest.getImagePayload().getPath());
+        }
+
         productRepository.save(product);
         return CommerceIdResponse.of(product.getId());
     }
