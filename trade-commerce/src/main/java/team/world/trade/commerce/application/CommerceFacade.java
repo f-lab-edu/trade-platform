@@ -10,6 +10,7 @@ import team.world.trade.commerce.application.payload.CommerceIdResponse;
 import team.world.trade.commerce.application.payload.CommerceRelation;
 import team.world.trade.commerce.application.payload.CommerceRequest;
 import team.world.trade.commerce.application.payload.CommerceResponse;
+import team.world.trade.commerce.application.payload.ImagePayload;
 import team.world.trade.commerce.application.payload.ProductCategoryResponse;
 import team.world.trade.commerce.application.payload.ResponseItems;
 import team.world.trade.commerce.application.service.CommerceImageService;
@@ -39,9 +40,8 @@ public class CommerceFacade {
 
     public CommerceIdResponse create(CommerceRequest commerceRequest) {
         CommerceIdResponse commerceIdResponse = commerceService.create(commerceRequest);
-        CommerceRelation relation =
-                CommerceRelation.of(commerceIdResponse.getId(),
-                        commerceRequest.getCategoryIds());
+        CommerceRelation relation = CommerceRelation.of(commerceIdResponse.getId(),
+                commerceRequest.getCategoryIds());
         try {
             commerceRelationService.insertProductByCategory(relation);
         } catch (Exception e) {
@@ -55,8 +55,8 @@ public class CommerceFacade {
         return commerceService.addCategory(categoryRequest);
     }
 
-    public CommerceIdResponse storeImage(Long productId, MultipartFile multipartFile) {
-        return commerceImageService.store(productId, multipartFile);
+    public ImagePayload storeImage(MultipartFile multipartFile) {
+        return commerceImageService.store(multipartFile);
     }
 
     public ResponseItems getProductsInCategory(Long id) {

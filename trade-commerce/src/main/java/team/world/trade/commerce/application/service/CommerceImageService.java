@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import team.world.trade.commerce.application.exception.FileNotStoreException;
-import team.world.trade.commerce.application.payload.CommerceIdResponse;
+import team.world.trade.commerce.application.payload.ImagePayload;
 import team.world.trade.commerce.domain.ExternalImage;
 import team.world.trade.commerce.domain.ImageRepository;
 import team.world.trade.common.service.FileUploader;
@@ -24,12 +24,12 @@ public class CommerceImageService {
         this.fileUploader = fileUploader;
     }
 
-    public CommerceIdResponse store(final Long productId, MultipartFile multipartFile) {
+    public ImagePayload store(MultipartFile multipartFile) {
         try {
             UploadFile storeFile = fileUploader.save(multipartFile);
-            ExternalImage image = new ExternalImage(productId, storeFile.getStoreFileName());
+            ExternalImage image = new ExternalImage(storeFile.getStoreFileName());
             imageRepository.save(image);
-            return CommerceIdResponse.of(productId);
+            return ImagePayload.of(image.getId(), image.getPath(), image.getUploadTime());
         } catch (Exception e) {
             logger.error("fail to store the file : name={}, exception={}",
                     multipartFile.getOriginalFilename(), e.getMessage());

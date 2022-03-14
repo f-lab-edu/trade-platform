@@ -3,13 +3,16 @@ package team.world.trade.commerce.application.payload;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Set;
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
 public class CommerceRequest {
     private final String name;
     private final Integer price;
     private final String detail;
     private final Set<Long> categoryIds;
+    private ImagePayload imagePayload;
 
     public CommerceRequest(@JsonProperty("name") String name,
                            @JsonProperty("price") Integer price,

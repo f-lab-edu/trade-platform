@@ -35,11 +35,10 @@ public class CommerceController {
             MediaType.MULTIPART_FORM_DATA_VALUE})
     ResponseApi<?> create(@RequestPart CommerceRequest commerceRequest,
                           @RequestPart(required = false) MultipartFile multipartFile) {
-        CommerceIdResponse commerceIdResponse = commerceFacade.create(commerceRequest);
-        if (!multipartFile.isEmpty()) {
-            return ResponseApi.success(
-                    commerceFacade.storeImage(commerceIdResponse.getId(), multipartFile));
+        if (multipartFile != null) {
+            commerceRequest.setImagePayload(commerceFacade.storeImage(multipartFile));
         }
+        CommerceIdResponse commerceIdResponse = commerceFacade.create(commerceRequest);
         return ResponseApi.success(commerceIdResponse);
     }
 

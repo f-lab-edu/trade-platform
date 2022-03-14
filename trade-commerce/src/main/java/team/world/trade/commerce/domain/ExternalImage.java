@@ -2,8 +2,8 @@ package team.world.trade.commerce.domain;
 
 public class ExternalImage extends Image {
 
-    public ExternalImage(Long productId, String path) {
-        super(productId, path);
+    public ExternalImage(String path) {
+        super(path);
     }
 
     @Override

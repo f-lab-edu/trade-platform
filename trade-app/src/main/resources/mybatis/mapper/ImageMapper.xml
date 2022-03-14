@@ -7,9 +7,8 @@
 
     <insert id="insert" parameterType="team.world.trade.commerce.infrastructure.mybatis.ImageMapper"
             keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO `IMAGE` (`ID`, `PRODUCT_ID`, `IMAGE_PATH`, `UPLOAD_TOME`)
+        INSERT INTO `IMAGE` (`ID`, `IMAGE_PATH`, `UPLOAD_TIME`)
         VALUES (#{id},
-                #{productId},
                 #{path},
                 #{uploadTime})
     </insert>
