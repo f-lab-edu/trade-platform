@@ -14,7 +14,11 @@ public interface AccountMapper extends AccountRepository {
 
     Optional<Account> findByUsername(String username);
 
+    int updatePassword(Account account);
+
     boolean existByUsername(String username);
 
     boolean existByEmail(String email);
+
+
 }
