@@ -52,8 +52,8 @@
     </select>
 
 
-    <update id="updatePassword" parameterType="Long">
-        UPDATE USER
+    <update id="update" parameterType="team.world.trade.user.domain.Account">
+        UPDATE ACCOUNT
         SET PASSWORD = #{password}
         WHERE ID = #{id}
     </update>

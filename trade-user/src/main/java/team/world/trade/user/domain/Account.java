@@ -2,6 +2,7 @@ package team.world.trade.user.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import team.world.trade.user.application.exception.PasswordMismatchException;
 
 @Getter
 @Setter
@@ -28,6 +29,10 @@ public class Account {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public void changePassword(String changePassword) {
+        this.password = changePassword;
     }
 
 }

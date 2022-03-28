@@ -42,7 +42,7 @@ public class AuthenticationFacade {
                 dto.getPassword());
     }
 
-    public PasswordResponse changePassword(Long userId, PasswordRequest request) {
+    public AccountResponse changePassword(Long userId, PasswordRequest request) {
         return registerAccountService.changePassword(userId, request);
     }
 

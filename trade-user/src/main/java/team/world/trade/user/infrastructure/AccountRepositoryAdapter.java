@@ -1,10 +1,14 @@
 package team.world.trade.user.infrastructure;
 
 import java.util.Optional;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 import team.world.trade.user.domain.Account;
 import team.world.trade.user.domain.AccountRepository;
 import team.world.trade.user.infrastructure.mybatis.AccountMapper;
 
+@Primary
+@Component
 public final class AccountRepositoryAdapter implements AccountRepository {
 
     private AccountMapper accountMapper;
@@ -37,4 +41,10 @@ public final class AccountRepositoryAdapter implements AccountRepository {
     public boolean existByEmail(String email) {
         return accountMapper.existByEmail(email);
     }
+
+    @Override
+    public int update(Account account) {
+        return accountMapper.update(account);
+    }
+
 }

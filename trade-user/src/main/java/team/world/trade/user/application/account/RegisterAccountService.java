@@ -1,62 +1,54 @@
 package team.world.trade.user.application.account;
 
-import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import team.world.trade.user.application.exception.AccountNotCreateException;
-import team.world.trade.user.application.exception.FailedToChangePassword;
 import team.world.trade.user.application.exception.PasswordMismatchException;
 import team.world.trade.user.application.request.PasswordRequest;
 import team.world.trade.user.application.response.AccountResponse;
-import team.world.trade.user.application.response.PasswordResponse;
 import team.world.trade.user.domain.Account;
-import team.world.trade.user.infrastructure.mybatis.AccountMapper;
+import team.world.trade.user.domain.AccountRepository;
 
 @Service
 public final class RegisterAccountService {
 
-    private final AccountMapper accountMapper;
+    private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public RegisterAccountService(AccountMapper accountMapper, PasswordEncoder passwordEncoder) {
-        this.accountMapper = accountMapper;
+    public RegisterAccountService(AccountRepository accountRepository,
+                                  PasswordEncoder passwordEncoder) {
+        this.accountRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     public AccountResponse register(String username, String email, String password) {
-        if (accountMapper.existByEmail(email)) {
+        if (accountRepository.existByEmail(email)) {
             throw new AccountNotCreateException();
         }
 
-        if (accountMapper.existByUsername(username)) {
+        if (accountRepository.existByUsername(username)) {
             throw new AccountNotCreateException();
         }
 
         String encoded = passwordEncoder.encode(password);
         Account account = new Account(username, email, encoded);
-        accountMapper.insert(account);
+        accountRepository.update(account);
 
         return new AccountResponse(account.getUsername(), account.getEmail());
     }
 
-    public PasswordResponse changePassword(Long userId, PasswordRequest request) {
-        if (!success(userId, request.getOriginalPassword())) {
+    public AccountResponse changePassword(Long userId, PasswordRequest request) {
+        String originalPassword = request.getOriginalPassword();
+        String changePassword = request.getChangePassword();
+
+        Account account = accountRepository.findById(userId).orElseThrow();
+        if (!passwordEncoder.matches(originalPassword, account.getPassword())) {
             throw new PasswordMismatchException();
         }
 
-        Account account = new Account(userId, passwordEncoder.encode(request.getChangePassword()));
-
-        if (accountMapper.updatePassword(account) == 1) {
-            return new PasswordResponse(userId);
-        }
-
-        throw new FailedToChangePassword();
-    }
-
-
-    public boolean success(Long userId, String password) {
-        Optional<Account> foundAccount = accountMapper.findById(userId);
-        return passwordEncoder.matches(password, foundAccount.get().getPassword());
+        account.changePassword(passwordEncoder.encode(changePassword));
+        accountRepository.update(account);
+        return new AccountResponse(account.getUsername(), account.getEmail());
     }
 
 }

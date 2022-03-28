@@ -15,4 +15,6 @@ public interface AccountRepository {
 
     boolean existByEmail(String email);
 
+    int update(Account account);
+
 }
