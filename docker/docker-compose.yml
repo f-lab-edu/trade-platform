@@ -3,7 +3,7 @@ version: "3"
 services:
   db:
     image: mysql:8.0.17
-    container_name: trade-mysql-test
+    container_name: trade-mysql
     ports:
       - "3306:3306"
     environment:
