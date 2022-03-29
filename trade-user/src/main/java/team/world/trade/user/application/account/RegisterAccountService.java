@@ -32,7 +32,7 @@ public final class RegisterAccountService {
 
         String encoded = passwordEncoder.encode(password);
         Account account = new Account(username, email, encoded);
-        accountRepository.update(account);
+        accountRepository.save(account);
 
         return new AccountResponse(account.getUsername(), account.getEmail());
     }
@@ -47,7 +47,7 @@ public final class RegisterAccountService {
         }
 
         account.changePassword(passwordEncoder.encode(changePassword));
-        accountRepository.update(account);
+        accountRepository.save(account);
         return new AccountResponse(account.getUsername(), account.getEmail());
     }
 

@@ -54,7 +54,9 @@
 
     <update id="update" parameterType="team.world.trade.user.domain.Account">
         UPDATE ACCOUNT
-        SET PASSWORD = #{password}
+        SET USERNAME = #{username},
+            PASSWORD = #{password},
+            EMAIL = #{email}
         WHERE ID = #{id}
     </update>
 

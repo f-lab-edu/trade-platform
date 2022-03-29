@@ -19,7 +19,11 @@ public final class AccountRepositoryAdapter implements AccountRepository {
 
     @Override
     public void save(Account account) {
-        accountMapper.insert(account);
+        if (account.getId() == null || account.getId() == 0L) {
+            accountMapper.insert(account);
+        } else {
+            accountMapper.update(account);
+        }
     }
 
     @Override
@@ -40,11 +44,6 @@ public final class AccountRepositoryAdapter implements AccountRepository {
     @Override
     public boolean existByEmail(String email) {
         return accountMapper.existByEmail(email);
-    }
-
-    @Override
-    public int update(Account account) {
-        return accountMapper.update(account);
     }
 
 }

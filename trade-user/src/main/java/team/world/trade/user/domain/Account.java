@@ -2,7 +2,6 @@ package team.world.trade.user.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import team.world.trade.user.application.exception.PasswordMismatchException;
 
 @Getter
 @Setter

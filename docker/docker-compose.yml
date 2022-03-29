@@ -3,9 +3,9 @@ version: "3"
 services:
   db:
     image: mysql:8.0.17
-    container_name: trade-mysql
+    container_name: trade-mysql-test
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "password!"
     volumes:
