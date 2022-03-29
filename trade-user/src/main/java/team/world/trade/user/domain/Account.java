@@ -18,15 +18,20 @@ public class Account {
     public Account() {
     }
 
-    public Account(String username, String email) {
-        this.username = username;
-        this.email = email;
+    public Account(Long id, String password) {
+        this.id = id;
+        this.password = password;
     }
+
 
     public Account(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public void changePassword(String changePassword) {
+        this.password = changePassword;
     }
 
 }

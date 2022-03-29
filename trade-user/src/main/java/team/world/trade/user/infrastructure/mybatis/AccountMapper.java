@@ -3,12 +3,13 @@ package team.world.trade.user.infrastructure.mybatis;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
 import team.world.trade.user.domain.Account;
-import team.world.trade.user.domain.AccountRepository;
 
 @Mapper
-public interface AccountMapper extends AccountRepository {
+public interface AccountMapper {
 
     void insert(Account account);
+
+    int update(Account account);
 
     Optional<Account> findById(Long accountId);
 
@@ -17,4 +18,6 @@ public interface AccountMapper extends AccountRepository {
     boolean existByUsername(String username);
 
     boolean existByEmail(String email);
+
+
 }

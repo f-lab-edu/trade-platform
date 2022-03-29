@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import team.world.trade.user.application.account.LoginAccountService;
 import team.world.trade.user.application.account.RegisterAccountService;
 import team.world.trade.user.application.request.LoginAccountDto;
+import team.world.trade.user.application.request.PasswordRequest;
 import team.world.trade.user.application.request.RegisterAccountDto;
 import team.world.trade.user.application.response.AccountResponse;
+import team.world.trade.user.application.response.PasswordResponse;
 import team.world.trade.user.application.session.SessionManagerService;
 
 @Service
@@ -38,6 +40,10 @@ public class AuthenticationFacade {
     public AccountResponse register(RegisterAccountDto dto) {
         return registerAccountService.register(dto.getUsername(), dto.getEmail(),
                 dto.getPassword());
+    }
+
+    public AccountResponse changePassword(Long userId, PasswordRequest request) {
+        return registerAccountService.changePassword(userId, request);
     }
 
     public String logout(HttpServletRequest request) {
