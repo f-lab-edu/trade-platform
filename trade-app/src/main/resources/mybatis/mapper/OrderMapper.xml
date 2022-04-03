@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="team.world.trade.order.infrastructure.mybatis.OrderMapper">
+
+    <insert id="insert" parameterType="team.world.trade.order.infrastructure.mybatis.OrderMapper"
+            keyProperty="orderId" useGeneratedKeys="true">
+        INSERT INTO `ORDERS` (`ID`, `USERNAME`, `PRODUCT_ID`, `ADDRESS`, `ZIPCODE`, `ORDER_TIME`, `ORDER_STATUS`)
+        VALUES (#{orderId},
+                #{username},
+                #{productId},
+                #{address},
+                #{zipcode},
+                NOW(),
+                #{orderStatus})
+    </insert>
+
+</mapper>

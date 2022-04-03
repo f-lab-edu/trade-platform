@@ -15,7 +15,6 @@ public class OrderFacade {
     }
 
     public OrderResponse createOrder(OrderRequest orderRequest) {
-        orderService.createOrder();
-        return new OrderResponse();
+        return orderService.createOrder(orderRequest);
     }
 }

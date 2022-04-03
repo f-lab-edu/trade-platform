@@ -3,25 +3,23 @@ package team.world.trade.order.application.payload;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
-import team.world.trade.order.domain.Orderer;
-import team.world.trade.order.domain.ShippingInfo;
 
 @Getter
 @Setter
 public class OrderRequest {
 
-    Orderer orderer;
-    OrderProduct orderProduct;
-    ShippingInfo shippingInfo;
+    private String username;
+    private Long productId;
+    private String address;
+    private String zipcode;
 
-    public OrderRequest() {
-    }
-
-    public OrderRequest(@JsonProperty("orderer") Orderer orderer,
-                        @JsonProperty("orderProduct") OrderProduct orderProduct,
-                        @JsonProperty("shippingInfo") ShippingInfo shippingInfo) {
-        this.orderer = orderer;
-        this.orderProduct = orderProduct;
-        this.shippingInfo = shippingInfo;
+    public OrderRequest(@JsonProperty("username") String username,
+                        @JsonProperty("address") String address,
+                        @JsonProperty("productId") Long productId,
+                        @JsonProperty("zipcode") String zipcode) {
+        this.username = username;
+        this.address = address;
+        this.productId = productId;
+        this.zipcode = zipcode;
     }
 }
