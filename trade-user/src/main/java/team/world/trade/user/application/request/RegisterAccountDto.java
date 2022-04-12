@@ -1,12 +1,25 @@
 package team.world.trade.user.application.request;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+@Schema(description = "로그인 요청")
 public class RegisterAccountDto {
 
     private String username;
 
+    @NotBlank
+    @Email
+    @Schema(description = "이메일", example = "kitty123@gmail.com", required = true)
     private String email;
 
+    @NotBlank
+    @Pattern(regexp = "^[A-Za-z1-9~!@#$%^&*()+|=]{8,12}$",
+            message = "Please enter the password in English, numbers, "
+                    + "and special characters within 8-12 digits.")
     private String password;
 
     public RegisterAccountDto() {

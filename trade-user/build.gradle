@@ -18,8 +18,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly project(":trade-common")
+    implementation project(":trade-common")
 }
+
 
 test {
     useJUnitPlatform()
