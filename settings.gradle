@@ -4,5 +4,4 @@ include 'trade-commerce'
 include 'trade-chat'
 include 'trade-common'
 include 'trade-app'
-include 'trade-order'
 
