@@ -21,7 +21,6 @@ dependencies {
     implementation project(':trade-chat')
     implementation project(":trade-common")
     implementation project(':trade-commerce')
-    implementation project(':trade-order')
     implementation project(':trade-user')
 }
 
