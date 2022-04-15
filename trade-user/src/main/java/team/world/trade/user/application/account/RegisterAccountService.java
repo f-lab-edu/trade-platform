@@ -1,7 +1,7 @@
 package team.world.trade.user.application.account;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import team.world.trade.common.service.PasswordEncrypter;
 import team.world.trade.user.application.exception.AccountNotCreateException;
 import team.world.trade.user.application.exception.PasswordMismatchException;
 import team.world.trade.user.application.request.PasswordRequest;
@@ -13,12 +13,12 @@ import team.world.trade.user.domain.AccountRepository;
 public final class RegisterAccountService {
 
     private final AccountRepository accountRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncrypter passwordEncrypter;
 
     public RegisterAccountService(AccountRepository accountRepository,
-                                  PasswordEncoder passwordEncoder) {
+                                  PasswordEncrypter passwordEncrypter) {
         this.accountRepository = accountRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.passwordEncrypter = passwordEncrypter;
     }
 
     public AccountResponse register(String username, String email, String password) {
@@ -30,7 +30,7 @@ public final class RegisterAccountService {
             throw new AccountNotCreateException();
         }
 
-        String encoded = passwordEncoder.encode(password);
+        String encoded = passwordEncrypter.encode(password);
         Account account = new Account(username, email, encoded);
         accountRepository.save(account);
 
@@ -42,11 +42,11 @@ public final class RegisterAccountService {
         String changePassword = request.getChangePassword();
 
         Account account = accountRepository.findById(userId).orElseThrow();
-        if (!passwordEncoder.matches(originalPassword, account.getPassword())) {
+        if (!passwordEncrypter.matches(originalPassword, account.getPassword())) {
             throw new PasswordMismatchException();
         }
 
-        account.changePassword(passwordEncoder.encode(changePassword));
+        account.changePassword(passwordEncrypter.encode(changePassword));
         accountRepository.save(account);
         return new AccountResponse(account.getUsername(), account.getEmail());
     }

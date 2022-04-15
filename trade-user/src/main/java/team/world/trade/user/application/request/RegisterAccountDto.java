@@ -1,12 +1,22 @@
 package team.world.trade.user.application.request;
 
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class RegisterAccountDto {
 
     private String username;
 
+    @NotBlank
+    @Email
     private String email;
 
+    @NotBlank
+    @Pattern(regexp = "^[A-Za-z1-9~!@#$%^&*()+|=]{8,12}$",
+            message = "Please enter the password in English, numbers, "
+                    + "and special characters within 8-12 digits.")
     private String password;
 
     public RegisterAccountDto() {
