@@ -1,7 +1,5 @@
 package team.world.trade.user.domain;
 
-import team.world.trade.common.service.PasswordEncrypter;
-
 public class FakePasswordEncrypter implements PasswordEncrypter {
 
     @Override
