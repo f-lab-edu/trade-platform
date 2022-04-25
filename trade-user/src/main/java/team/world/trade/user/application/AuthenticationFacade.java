@@ -9,7 +9,6 @@ import team.world.trade.user.application.request.LoginAccountDto;
 import team.world.trade.user.application.request.PasswordRequest;
 import team.world.trade.user.application.request.RegisterAccountDto;
 import team.world.trade.user.application.response.AccountResponse;
-import team.world.trade.user.application.response.PasswordResponse;
 import team.world.trade.user.application.session.SessionManagerService;
 
 @Service
