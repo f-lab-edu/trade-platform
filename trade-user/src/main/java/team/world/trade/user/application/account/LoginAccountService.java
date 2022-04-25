@@ -12,7 +12,7 @@ import team.world.trade.user.domain.PasswordEncrypter;
 
 @Service
 @Transactional
-public final class LoginAccountService {
+public class LoginAccountService {
 
     private final AccountRepository accountRepository;
     private final PasswordEncrypter passwordEncrypter;
