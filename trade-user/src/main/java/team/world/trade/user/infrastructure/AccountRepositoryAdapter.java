@@ -5,45 +5,41 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import team.world.trade.user.domain.Account;
 import team.world.trade.user.domain.AccountRepository;
-import team.world.trade.user.infrastructure.mybatis.AccountMapper;
+import team.world.trade.user.infrastructure.jpa.JpaAccountRepository;
 
 @Primary
 @Component
 public final class AccountRepositoryAdapter implements AccountRepository {
 
-    private AccountMapper accountMapper;
+    private JpaAccountRepository jpaAccountRepository;
 
-    public AccountRepositoryAdapter(AccountMapper accountMapper) {
-        this.accountMapper = accountMapper;
+    public AccountRepositoryAdapter(JpaAccountRepository jpaAccountRepository) {
+        this.jpaAccountRepository = jpaAccountRepository;
     }
 
     @Override
     public void save(Account account) {
-        if (account.getId() == null || account.getId() == 0L) {
-            accountMapper.insert(account);
-        } else {
-            accountMapper.update(account);
-        }
+        jpaAccountRepository.save(account);
     }
 
     @Override
     public Optional<Account> findById(Long accountId) {
-        return accountMapper.findById(accountId);
+        return jpaAccountRepository.findById(accountId);
     }
 
     @Override
     public Optional<Account> findByUsername(String username) {
-        return accountMapper.findByUsername(username);
+        return jpaAccountRepository.findByUsername(username);
     }
 
     @Override
     public boolean existByUsername(String username) {
-        return accountMapper.existByUsername(username);
+        return jpaAccountRepository.existByUsername(username);
     }
 
     @Override
     public boolean existByEmail(String email) {
-        return accountMapper.existByEmail(email);
+        return jpaAccountRepository.existByEmail(email);
     }
 
 }

@@ -45,6 +45,10 @@ subprojects {
         implementation 'org.springframework:spring-jdbc:5.3.14'
         implementation 'org.apache.commons:commons-dbcp2:2.8.0'
 
+        implementation 'org.hibernate:hibernate-entitymanager:5.6.7.Final'
+        implementation 'javax.persistence:javax.persistence-api:2.2'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.12'
+
         implementation 'org.flywaydb:flyway-core:8.4.0'
         implementation 'org.flywaydb:flyway-mysql:8.4.0'
 

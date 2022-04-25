@@ -1,16 +1,18 @@
 package team.world.trade.user.application.account;
 
 import org.springframework.stereotype.Service;
-import team.world.trade.common.service.PasswordEncrypter;
+import org.springframework.transaction.annotation.Transactional;
 import team.world.trade.user.application.exception.AccountNotCreateException;
 import team.world.trade.user.application.exception.PasswordMismatchException;
 import team.world.trade.user.application.request.PasswordRequest;
 import team.world.trade.user.application.response.AccountResponse;
 import team.world.trade.user.domain.Account;
 import team.world.trade.user.domain.AccountRepository;
+import team.world.trade.user.domain.PasswordEncrypter;
 
 @Service
-public final class RegisterAccountService {
+@Transactional
+public class RegisterAccountService {
 
     private final AccountRepository accountRepository;
     private final PasswordEncrypter passwordEncrypter;
