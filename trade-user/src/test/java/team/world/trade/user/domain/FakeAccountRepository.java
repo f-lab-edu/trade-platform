@@ -28,13 +28,13 @@ public class FakeAccountRepository implements AccountRepository {
     }
 
     @Override
-    public boolean existByUsername(String username) {
+    public boolean existsByUsername(String username) {
         return store.values()
                 .stream().anyMatch(acc -> acc.getUsername().equals(username));
     }
 
     @Override
-    public boolean existByEmail(String email) {
+    public boolean existsByEmail(String email) {
         return store.values()
                 .stream().anyMatch(acc -> acc.getEmail().equals(email));
     }

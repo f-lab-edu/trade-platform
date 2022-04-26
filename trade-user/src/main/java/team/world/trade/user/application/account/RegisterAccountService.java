@@ -24,11 +24,11 @@ public class RegisterAccountService {
     }
 
     public AccountResponse register(String username, String email, String password) {
-        if (accountRepository.existByEmail(email)) {
+        if (accountRepository.existsByEmail(email)) {
             throw new AccountNotCreateException();
         }
 
-        if (accountRepository.existByUsername(username)) {
+        if (accountRepository.existsByUsername(username)) {
             throw new AccountNotCreateException();
         }
 

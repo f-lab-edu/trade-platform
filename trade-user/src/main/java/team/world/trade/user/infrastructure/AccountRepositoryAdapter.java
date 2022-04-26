@@ -11,7 +11,7 @@ import team.world.trade.user.infrastructure.jpa.JpaAccountRepository;
 @Component
 public final class AccountRepositoryAdapter implements AccountRepository {
 
-    private JpaAccountRepository jpaAccountRepository;
+    private final JpaAccountRepository jpaAccountRepository;
 
     public AccountRepositoryAdapter(JpaAccountRepository jpaAccountRepository) {
         this.jpaAccountRepository = jpaAccountRepository;
@@ -33,13 +33,13 @@ public final class AccountRepositoryAdapter implements AccountRepository {
     }
 
     @Override
-    public boolean existByUsername(String username) {
-        return jpaAccountRepository.existByUsername(username);
+    public boolean existsByUsername(String username) {
+        return jpaAccountRepository.existsByUsername(username);
     }
 
     @Override
-    public boolean existByEmail(String email) {
-        return jpaAccountRepository.existByEmail(email);
+    public boolean existsByEmail(String email) {
+        return jpaAccountRepository.existsByEmail(email);
     }
 
 }
