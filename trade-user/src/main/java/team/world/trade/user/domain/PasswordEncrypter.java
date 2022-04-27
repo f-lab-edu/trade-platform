@@ -1,4 +1,5 @@
-package team.world.trade.common.service;
+package team.world.trade.user.domain;
+
 
 public interface PasswordEncrypter {
 
