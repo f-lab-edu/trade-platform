@@ -6,5 +6,6 @@ public interface ProductCategoryRepository {
 
     void batchInsert(List<ProductCategory> productCategories);
 
+
     List<ProductCategory> findAll();
 }
