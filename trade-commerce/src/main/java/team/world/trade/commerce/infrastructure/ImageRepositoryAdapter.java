@@ -1,7 +1,9 @@
 package team.world.trade.commerce.infrastructure;
 
 import java.util.List;
+
 import org.springframework.stereotype.Component;
+
 import team.world.trade.commerce.domain.Image;
 import team.world.trade.commerce.domain.ImageRepository;
 import team.world.trade.commerce.infrastructure.mybatis.ImageMapper;

@@ -1,4 +1,4 @@
-package team.world.trade.commerce.presentation;
+package team.world.trade.commerce.presentation.commerce;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import team.world.trade.commerce.application.CommerceFacade;
 import team.world.trade.commerce.application.payload.CategoryRequest;
 import team.world.trade.commerce.application.payload.CommerceIdResponse;
 import team.world.trade.commerce.application.payload.CommerceRequest;
 import team.world.trade.common.response.ResponseApi;
-
 
 @RestController
 @RequestMapping("commerce")
