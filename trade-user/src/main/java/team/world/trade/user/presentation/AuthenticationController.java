@@ -25,10 +25,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseApi<?> login(@RequestBody LoginAccountDto loginAccountDto,
-                                HttpServletRequest request,
-                                HttpServletResponse response) {
-        return ResponseApi.success(authenticationFacade.login(loginAccountDto, request, response));
+    public ResponseApi<?> login(@RequestBody LoginAccountDto loginAccountDto) {
+        return ResponseApi.success(authenticationFacade.login(loginAccountDto));
     }
 
     @PostMapping("/signup")
@@ -37,15 +35,10 @@ public class AuthenticationController {
     }
 
     @PatchMapping("/{userId}/password")
-    public ResponseApi<?> changePassword(@PathVariable Long userId, @RequestBody
-            PasswordRequest changePasswordRequest) {
+    public ResponseApi<?> changePassword(@PathVariable Long userId,
+                                         @RequestBody PasswordRequest changePasswordRequest) {
         return ResponseApi.success(
                 authenticationFacade.changePassword(userId, changePasswordRequest));
-    }
-
-    @PostMapping("/logout")
-    public ResponseApi<?> logout(HttpServletRequest request) {
-        return ResponseApi.success(authenticationFacade.logout(request));
     }
 
 }
