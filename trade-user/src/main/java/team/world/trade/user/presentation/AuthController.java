@@ -1,7 +1,5 @@
 package team.world.trade.user.presentation;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +14,11 @@ import team.world.trade.user.application.request.RegisterAccountDto;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthenticationController {
+public class AuthController {
 
     private final AuthenticationFacade authenticationFacade;
 
-    public AuthenticationController(AuthenticationFacade authenticationFacade) {
+    public AuthController(AuthenticationFacade authenticationFacade) {
         this.authenticationFacade = authenticationFacade;
     }
 

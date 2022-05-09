@@ -20,6 +20,22 @@ public class RedisService {
         this.objectMapper = objectMapper;
     }
 
+    public AccountSessionDto getSession(String authKey) {
+        String jsonResult = (String) redisTemplate.opsForValue().get(authKey);
+
+        if (jsonResult != null) {
+            try {
+                return objectMapper.readValue(jsonResult, AccountSessionDto.class);
+            } catch (JsonProcessingException e) {
+                redisTemplate.delete(authKey);
+                throw new RuntimeException(
+                        "Failed to deserialize the object for session processing");
+            }
+        }
+
+        return null;
+    }
+
     public String makeSession(AccountSessionDto accountSession) {
         String authKey = UUID.randomUUID().toString();
 
@@ -33,5 +49,12 @@ public class RedisService {
         }
 
         return authKey;
+    }
+
+    public void renewSession(AccountSessionDto accountSession, String authKey) {
+
+        if (accountSession != null) {
+            redisTemplate.expire(authKey, 1800, TimeUnit.SECONDS);
+        }
     }
 }
