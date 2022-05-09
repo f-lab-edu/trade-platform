@@ -16,23 +16,6 @@ import team.world.trade.user.application.response.AccountResponse;
 @DisplayName("Login test")
 class AccountServiceTest {
 
-    @Autowired
-    private RedisService redisService;
-
-
-    @Test
-    void passwordMismatchWhenUserLogin() {
-        AccountRepository accountRepository = new FakeAccountRepository();
-        accountRepository.save(new Account("이승철", "mangfu100@gmail.com", "password!"));
-
-        LoginAccountService loginAccountService =
-                new LoginAccountService(accountRepository, new FakePasswordEncrypter(),
-                        redisService);
-
-        assertThatExceptionOfType(PasswordMismatchException.class)
-                .isThrownBy(() -> loginAccountService.login("이승철", "wrongPass"));
-    }
-
     @Test
     void registerAccount() {
         AccountRepository accountRepository = new FakeAccountRepository();
