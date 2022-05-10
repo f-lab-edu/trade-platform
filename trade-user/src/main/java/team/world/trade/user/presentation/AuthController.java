@@ -1,11 +1,13 @@
 package team.world.trade.user.presentation;
 
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import team.world.trade.common.annotation.Authentication;
 import team.world.trade.common.response.ResponseApi;
 import team.world.trade.user.application.AuthenticationFacade;
 import team.world.trade.user.application.request.LoginAccountDto;
@@ -22,9 +24,11 @@ public class AuthController {
         this.authenticationFacade = authenticationFacade;
     }
 
+
     @PostMapping("/login")
-    public ResponseApi<?> login(@RequestBody LoginAccountDto loginAccountDto) {
-        return ResponseApi.success(authenticationFacade.login(loginAccountDto));
+    public ResponseApi<?> login(@RequestBody LoginAccountDto loginAccountDto,
+                                HttpServletResponse response) {
+        return ResponseApi.success(authenticationFacade.login(loginAccountDto, response));
     }
 
     @PostMapping("/signup")
@@ -33,6 +37,7 @@ public class AuthController {
     }
 
     @PatchMapping("/{userId}/password")
+    @Authentication
     public ResponseApi<?> changePassword(@PathVariable Long userId,
                                          @RequestBody PasswordRequest changePasswordRequest) {
         return ResponseApi.success(

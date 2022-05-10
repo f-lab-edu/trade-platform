@@ -1,16 +1,20 @@
-package team.world.trade.user.application.redis;
+package team.world.trade.user.infrastructure.authentication;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import team.world.trade.user.application.request.AccountSessionDto;
 
-@Service
-public class RedisService {
+@Component
+public class RedisService implements AuthenticationService {
 
     private final RedisTemplate<String, String> redisTemplate;
     private final ObjectMapper objectMapper;
@@ -20,28 +24,29 @@ public class RedisService {
         this.objectMapper = objectMapper;
     }
 
-    public AccountSessionDto getSession(String authKey) {
-        String jsonResult = (String) redisTemplate.opsForValue().get(authKey);
+    public String getAuth(HttpServletRequest request) {
+        String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+        String jsonResult = (String) redisTemplate.opsForValue().get(bearerToken);
 
         if (jsonResult != null) {
             try {
-                return objectMapper.readValue(jsonResult, AccountSessionDto.class);
+                return objectMapper.readValue(jsonResult, String.class);
             } catch (JsonProcessingException e) {
-                redisTemplate.delete(authKey);
+                redisTemplate.delete(bearerToken);
                 throw new RuntimeException(
                         "Failed to deserialize the object for session processing");
             }
         }
-
         return null;
     }
 
-    public String makeSession(AccountSessionDto accountSession) {
+    @Override
+    public String createAuth(String username, HttpServletResponse response) {
         String authKey = UUID.randomUUID().toString();
 
         try {
             String json = objectMapper.writeValueAsString(
-                    objectMapper.convertValue(accountSession, Map.class));
+                    objectMapper.convertValue(username, Map.class));
             redisTemplate.opsForValue().set(authKey, json);
             redisTemplate.expire(authKey, 1800, TimeUnit.SECONDS);
         } catch (JsonProcessingException e) {
@@ -51,10 +56,11 @@ public class RedisService {
         return authKey;
     }
 
-    public void renewSession(AccountSessionDto accountSession, String authKey) {
 
+    public void renewSession(AccountSessionDto accountSession, String authKey) {
         if (accountSession != null) {
             redisTemplate.expire(authKey, 1800, TimeUnit.SECONDS);
         }
     }
+
 }
