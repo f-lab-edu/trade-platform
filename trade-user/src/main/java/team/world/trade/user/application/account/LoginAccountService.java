@@ -4,7 +4,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.world.trade.user.application.exception.PasswordMismatchException;
-import team.world.trade.user.infrastructure.authentication.AuthenticationService;
 import team.world.trade.user.application.response.AccountResponse;
 import team.world.trade.user.domain.Account;
 import team.world.trade.user.domain.AccountRepository;

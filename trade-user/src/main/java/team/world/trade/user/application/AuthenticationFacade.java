@@ -4,13 +4,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 import team.world.trade.user.application.account.LoginAccountService;
 import team.world.trade.user.application.account.RegisterAccountService;
-import team.world.trade.user.application.request.AccountSessionDto;
 import team.world.trade.user.application.request.LoginAccountDto;
 import team.world.trade.user.application.request.PasswordRequest;
 import team.world.trade.user.application.request.RegisterAccountDto;
 import team.world.trade.user.application.response.AccountResponse;
-import team.world.trade.user.application.response.TokenResponse;
-import team.world.trade.user.infrastructure.authentication.AuthenticationService;
+import team.world.trade.user.application.authentication.AuthenticationService;
 
 @Service
 public class AuthenticationFacade {
@@ -29,9 +27,9 @@ public class AuthenticationFacade {
 
     public AccountResponse login(LoginAccountDto dto, HttpServletResponse response) {
         AccountResponse account = loginAccountService.login(dto.getUsername(), dto.getPassword());
-        authenticationService.createAuth(dto.getUsername(), response);
+        String auth = authenticationService.createAuth(dto.getUsername(), response);
 
-        return new AccountResponse(account.getUsername(), account.getEmail());
+        return new AccountResponse(account.getUsername(), account.getEmail(), auth);
     }
 
     public AccountResponse register(RegisterAccountDto dto) {

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import team.world.trade.common.annotation.Authentication;
-import team.world.trade.user.infrastructure.authentication.AuthenticationService;
+import team.world.trade.user.application.authentication.AuthenticationService;
 
 public class AuthenticationInterceptor implements HandlerInterceptor {
 

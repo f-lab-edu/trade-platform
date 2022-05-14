@@ -1,4 +1,4 @@
-package team.world.trade.user.infrastructure.authentication;
+package team.world.trade.user.application.authentication;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
-@Component
 public class SessionManager {
 
     public static final String SESSION_COOKIE_NAME = "mySessionId";

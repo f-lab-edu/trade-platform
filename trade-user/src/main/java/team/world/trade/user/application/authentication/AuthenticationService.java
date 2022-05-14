@@ -1,4 +1,4 @@
-package team.world.trade.user.infrastructure.authentication;
+package team.world.trade.user.application.authentication;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

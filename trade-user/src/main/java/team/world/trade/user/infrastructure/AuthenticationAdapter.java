@@ -2,24 +2,25 @@ package team.world.trade.user.infrastructure;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import team.world.trade.user.infrastructure.authentication.AuthenticationService;
-import team.world.trade.user.infrastructure.authentication.SessionManagerService;
+import team.world.trade.user.application.authentication.AuthenticationService;
+import team.world.trade.user.application.authentication.RedisService;
 
 public class AuthenticationAdapter implements AuthenticationService {
 
-    private final SessionManagerService sessionManagerService;
+    //    private final SessionManagerService sessionManagerService;
+    private final RedisService redisService;
 
-    public AuthenticationAdapter(SessionManagerService sessionManagerService) {
-        this.sessionManagerService = sessionManagerService;
+    public AuthenticationAdapter(RedisService redisService) {
+        this.redisService = redisService;
     }
 
     @Override
     public String createAuth(String username, HttpServletResponse response) {
-        return sessionManagerService.createAuth(username, response);
+        return redisService.createAuth(username, response);
     }
 
     @Override
     public String getAuth(HttpServletRequest request) {
-        return sessionManagerService.getAuth(request);
+        return redisService.getAuth(request);
     }
 }

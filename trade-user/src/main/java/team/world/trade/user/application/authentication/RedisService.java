@@ -1,4 +1,4 @@
-package team.world.trade.user.infrastructure.authentication;
+package team.world.trade.user.application.authentication;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,11 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import team.world.trade.user.application.request.AccountSessionDto;
 
-@Component
 public class RedisService implements AuthenticationService {
 
     private final RedisTemplate<String, String> redisTemplate;
@@ -46,7 +43,7 @@ public class RedisService implements AuthenticationService {
 
         try {
             String json = objectMapper.writeValueAsString(
-                    objectMapper.convertValue(username, Map.class));
+                    objectMapper.convertValue(username, String.class));
             redisTemplate.opsForValue().set(authKey, json);
             redisTemplate.expire(authKey, 1800, TimeUnit.SECONDS);
         } catch (JsonProcessingException e) {

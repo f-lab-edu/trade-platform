@@ -1,15 +1,10 @@
-package team.world.trade.user.infrastructure.authentication;
+package team.world.trade.user.application.authentication;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import team.world.trade.user.application.exception.SessionAuthenticationException;
 
-@Primary
-@Component
 public class SessionManagerService implements AuthenticationService {
 
     private final SessionManager sessionManager;
