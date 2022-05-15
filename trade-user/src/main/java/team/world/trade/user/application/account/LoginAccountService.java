@@ -27,12 +27,12 @@ public class LoginAccountService {
         if (!success(username, password)) {
             throw new PasswordMismatchException();
         }
-
         Account account = accountRepository.findByUsername(username).orElseThrow();
         return new AccountResponse(account.getUsername(), account.getEmail());
     }
 
-    public boolean success(String username, String password) {
+
+    private boolean success(String username, String password) {
         Optional<Account> foundAccount = accountRepository.findByUsername(username);
         return passwordEncrypter.matches(password, foundAccount.get().getPassword());
     }

@@ -1,4 +1,4 @@
-package team.world.trade.user.application.session;
+package team.world.trade.user.application.authentication;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -9,26 +9,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
-@Component
 public class SessionManager {
 
     public static final String SESSION_COOKIE_NAME = "mySessionId";
-    private Map<String, Object> sessionStore = new ConcurrentHashMap<>();
+    private Map<String, String> sessionStore = new ConcurrentHashMap<>();
 
-    public void createSession(Object value, HttpServletResponse response) {
+    public String createSession(String value, HttpServletResponse response) {
         String sessionId = UUID.randomUUID().toString();
         sessionStore.put(sessionId, value);
         Cookie cookie = new Cookie(SESSION_COOKIE_NAME, sessionId);
         response.addCookie(cookie);
+        return sessionId;
     }
 
-    public Object getSession(HttpServletRequest request) {
+    public Cookie getCookie(HttpServletRequest request) {
+        Cookie sessionCookie = findCookie(request);
+        if (sessionCookie == null) {
+            return null;
+        }
+        return sessionCookie;
+    }
+
+
+    public String getSession(HttpServletRequest request) {
         Cookie sessionCookie = findCookie(request);
         if (sessionCookie == null) {
             return null;
         }
         return sessionStore.get(sessionCookie.getValue());
     }
+
 
     public String expire(HttpServletRequest request) {
         Cookie sessionCookie = findCookie(request);

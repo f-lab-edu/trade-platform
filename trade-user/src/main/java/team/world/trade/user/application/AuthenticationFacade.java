@@ -1,6 +1,5 @@
 package team.world.trade.user.application;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
 import team.world.trade.user.application.account.LoginAccountService;
@@ -9,31 +8,28 @@ import team.world.trade.user.application.request.LoginAccountDto;
 import team.world.trade.user.application.request.PasswordRequest;
 import team.world.trade.user.application.request.RegisterAccountDto;
 import team.world.trade.user.application.response.AccountResponse;
-import team.world.trade.user.application.session.SessionManagerService;
+import team.world.trade.user.application.authentication.AuthenticationService;
 
 @Service
 public class AuthenticationFacade {
 
     private final LoginAccountService loginAccountService;
     private final RegisterAccountService registerAccountService;
-    private final SessionManagerService sessionManagerService;
+    private final AuthenticationService authenticationService;
 
     public AuthenticationFacade(LoginAccountService loginAccountService,
                                 RegisterAccountService registerAccountService,
-                                SessionManagerService sessionManagerService) {
+                                AuthenticationService authenticationService) {
         this.loginAccountService = loginAccountService;
         this.registerAccountService = registerAccountService;
-        this.sessionManagerService = sessionManagerService;
+        this.authenticationService = authenticationService;
     }
 
-    public AccountResponse login(LoginAccountDto dto, HttpServletRequest request,
-                                 HttpServletResponse response) {
-        AccountResponse accountResponse = null;
-        if (!sessionManagerService.alreadyLogin(request)) {
-            accountResponse = loginAccountService.login(dto.getUsername(), dto.getPassword());
-            sessionManagerService.createSession(dto.getUsername(), response);
-        }
-        return accountResponse;
+    public AccountResponse login(LoginAccountDto dto, HttpServletResponse response) {
+        AccountResponse account = loginAccountService.login(dto.getUsername(), dto.getPassword());
+        String auth = authenticationService.createAuth(dto.getUsername(), response);
+
+        return new AccountResponse(account.getUsername(), account.getEmail(), auth);
     }
 
     public AccountResponse register(RegisterAccountDto dto) {
@@ -45,8 +41,5 @@ public class AuthenticationFacade {
         return registerAccountService.changePassword(userId, request);
     }
 
-    public String logout(HttpServletRequest request) {
-        return sessionManagerService.expireSession(request);
-    }
 
 }
